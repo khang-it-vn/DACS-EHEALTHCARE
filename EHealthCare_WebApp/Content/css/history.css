@@ -1,0 +1,48 @@
+﻿#content-element{
+    margin: 10px;
+    background-color: lightgray;
+   width: 650px;
+    height: 150px;
+    border-radius: 15px;
+    padding: 5px 5px;
+    float: left;
+}
+.element-1{
+    width: 450px;
+    height: 100%;
+    border-radius: 15px;
+    float: left;
+    margin: 0px 5px;
+    padding: 5px 10px;
+    font-family: Arial;
+    font-weight: 600;
+    color: white;
+    
+}
+.element-2{
+    width: 170px;
+    height: 100%;
+    border-radius: 15px;
+    float: left;
+    margin: 0px 5px;
+    color: white;
+    text-align: center;
+    
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+#element-1-img{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+
+}
+#element-1-data{
+    float: left;
+    margin: 10px;
+}

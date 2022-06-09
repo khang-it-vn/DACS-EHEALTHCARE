@@ -1,0 +1,121 @@
+﻿@model DbEHealthcare.Entities.BenhNhan
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
+}
+<script>
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+    var dob = formatDate('@(Model.ntns == null ? DateTime.Now : Model.ntns)');
+    $(document).ready(function(){
+        var element = document.getElementById("sicula");
+        element.value = dob;
+
+        if(@Model.gioitinh.ToString().ToLower()==true)
+        {
+            element = document.getElementById("c-nam");
+            element.setAttribute("Checked","true");
+        }
+
+        else
+        {
+            element = document.getElementById("c-nu");
+            element.setAttribute("Checked","true");
+        }
+    });
+
+
+</script>
+
+<div id="content" style="font-family: Arial; font-weight: 400; font-size: 25px">
+    @Session["test"]
+    <form action="Update" method="post" enctype="multipart/form-data">
+        <div id="pro-head">
+            <div id="pro-submit">
+                <input type="submit" value="Cập Nhật">
+            </div>
+            <div id="pro-img">
+                <img src="~/Content/images/@Session["img"]" onclick="loadImage()">
+            </div>
+
+            <div id="pro-ht">
+                <input type="text" name="hoten" value="@Model.hoten" size="15" style="text-align: center;">
+            </div>
+            <hr>
+            <div id="fileload" style="display: none">
+                <input style="margin-left: 15px" type="file" accept="image/png" name="hinhanh">
+                <div onclick="closeFile()" style="float: left; font-size: 22px; margin-right= 10%">
+                    <button> X </button>
+                </div>
+            </div>
+        </div>
+        <div id="pro-body">
+            <table style="width: 100%; border: 1px solid black; padding: 5px 10px;">
+                
+                <tr>
+                    <td style="width: 350px">
+                        <label>Ngày/Tháng/Năm Sinh:</label>
+                    </td>
+                    <td>
+                        <input id="sicula" type="date" name="ntns" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Giới Tính:</label>
+                    </td>
+                    <td>
+                        <input id="c-nam" name="gioitinh" type="radio" value="true">Nam
+                        <input id="c-nu" name="gioitinh" type="radio" value="false">Nữ
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Quốc Tịch:</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.quoctich" readonlyc">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Địa Chỉ:</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.dc" name="dc" style="width: 100%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Số Điện Thoại:</label>
+                    </td>
+                    <td>
+                        <input type="number" value="@Model.sdt" name="sdt" maxlength="13">
+                    </td>
+                </tr>
+            </table>
+            <div id="toDen">
+            </div>
+
+    </form>
+</div>
+<style>
+    input{
+        border: none;
+        font-family: Arial;
+        font-weight: 500;
+    }
+</style>
+
+

@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_bs.cshtml";
+    DbEHealthcare.Entities.BacSi bs = ViewData["bacsi"] as DbEHealthcare.Entities.BacSi;
+}
+
+<script>
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+    var dob = formatDate('@(bs.ntns == null ? DateTime.Now : bs.ntns)');
+    $(document).ready(function(){
+        var element = document.getElementById("sicula");
+        element.value = dob;
+
+        if(@bs.gioitinh.ToString().ToLower()==true)
+        {
+            element = document.getElementById("c-nam");
+            element.setAttribute("Checked","true");
+        }
+
+        else
+        {
+            element = document.getElementById("c-nu");
+            element.setAttribute("Checked","true");
+        }
+    });
+
+
+</script>
+
+<div id="content" style="font-family: Arial; font-weight: 400; font-size: 25px">
+    @Session["test"]
+    <form action="Update" method="post" enctype="multipart/form-data">
+        <div id="pro-head">
+            <div id="pro-submit">
+                <input type="submit" value="Cập Nhật">
+            </div>
+            <div id="pro-img">
+                <img src="~/Content/images/@Session["img"]" onclick="loadImage()">
+            </div>
+
+            <div id="pro-ht">
+                <input type="text" name="hoten" value="@bs.hoten" size="15" style="text-align: center;">
+            </div>
+            <hr>
+            <div id="fileload" style="display: none">
+                <input style="margin-left: 15px" type="file" accept="image/png" name="hinhanh">
+                <div onclick="closeFile()" style="float: left; font-size: 22px; margin-right: 10%">
+                    <button> X </button>
+                </div>
+            </div>
+        </div>
+        <div id="pro-body">
+            <table style="width: 100%; border: 1px solid black; padding: 5px 10px;">
+
+                <tr>
+                    <td style="width: 370px">
+                        <label>Ngày/Tháng/Năm Sinh:</label>
+                    </td>
+                    <td>
+                        <input id="sicula" type="date" name="ntns">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Giới Tính:</label>
+                    </td>
+                    <td>
+                        <input id="c-nam" name="gioitinh" type="radio" value="true">Nam
+                        <input id="c-nu" name="gioitinh" type="radio" value="false">Nữ
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Trình Độ Chuyên Môn:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="tdcm" value="@bs.tdcm" readonlyc">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Chuyên Khoa: </label>
+                    </td>
+                    <td>
+                        <input type="text" value="@bs.ChuyenKhoa.ten_CK" maxlength="13">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Địa Chỉ Bệnh Viện Trực Thuộc:</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@bs.dc_bv_tt" name="dcbvtt" style="width: 100%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Kinh Nghiệm:</label>
+                    </td>
+                    <td>
+                        <textarea name="kinhnghiem" style="width: 100%; height: 150px;">@bs.kinhnghiem</textarea>
+                    </td>
+                </tr>
+                
+            </table>
+            <div id="toDen">
+            </div>
+    </div>
+    </form>
+    
+</div>
+<style>
+    input {
+        border: none;
+        font-family: Arial;
+        font-weight: 500;
+    }
+</style>

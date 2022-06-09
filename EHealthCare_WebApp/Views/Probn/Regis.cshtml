@@ -1,0 +1,213 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Regis";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
+    List<DbEHealthcare.Entities.LichTuVan> lichtuvans = ViewData["LichTuVans"] as List<DbEHealthcare.Entities.LichTuVan>;
+    int sp = 1;
+}
+<script>
+    var email_bs = "@Model.BacSi.email";
+    function closeForm() {
+        document.getElementsByClassName("offonclick")[0].parentNode.removeChild(document.getElementsByClassName("offonclick")[0]);
+    }
+   
+</script>
+<link rel="stylesheet" href="~/Content/css/regis.css"/>
+<div id="content">
+    <div id="content-head" style="background-color: white;">
+        <div class="head-img">
+            <img src="~/Content/images/@Model.BacSi.hinhanh">
+        </div>
+        <div class="head-introduce" style="font-size: 17px; color: black;">
+            Họ tên: @Model.BacSi.hoten | Giới Tính : @Model.BacSi.gioitinh<br>
+            Chuyên khoa: @Model.BacSi.ChuyenKhoa.ten_CK <br>
+            Trình độ chuyên môn: @Model.BacSi.tdcm <br />
+            Bệnh viện trực thuộc: @Model.BacSi.dc_bv_tt <br />
+            Kinh nghiệm: @Model.BacSi.kinhnghiem
+
+        </div>
+        <div class="head-helper">
+            <div class="helper" style="background-color: white;"></div>Chưa được đặt<br />
+            <div class="helper" style="background-color: cornflowerblue"></div>Đã được đặt<br />
+            <div class="helper" style="background-color: chocolate"></div>Chưa được lên lịch<br />
+        </div>
+    </div>
+    <div id="content-body">
+        <div class="content-body-title">
+            <div class="content-body-2 form-dayofweek" style="background-color: white; border: 1px solid black; width: 50px;">
+            </div>
+            @{
+                    int tg = 7;
+                    for (int j = 0; j < 10; j++)
+                    {
+
+                    <div class="content-body-2 form-dayofweek  "
+                            style="background-color: white; width: 50px; border: 1px solid black;">
+                        @tg
+                    </div>   
+                    tg++;
+                    }
+               }
+                    
+        </div>
+
+        @{
+            DateTime dt = DateTime.Now;
+            for (int i = 0; i < 7; i++)
+            {
+                <div class="content-body-1">
+                    <div class="content-body-2 form-dayofweek" style="background-color: white; border: 1px solid black; background-color: darkslategrey; color: white;">
+                        <input name="hour" value="@dt.ToShortDateString()" readonly size="5">
+                    </div>
+                    @{
+                        DateTime hour = DateTime.Parse(dt.ToShortDateString() + " 07:00:00");
+                        for (int j = 0; j < 10; j++)
+                        {
+                            DbEHealthcare.Entities.LichTuVan ltv_find = lichtuvans.Find(l => l.ntv == hour);
+                            if (ltv_find != null)
+                            {
+                                if (ltv_find.email_BN != null)
+                                {
+                                    <div class="content-body-2 form-dayofweek" style="background-color: deepskyblue;">
+                                        <input name="hour" value="@hour.Hour" readonly size="5" style="display: none;">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="content-body-2 form-dayofweek  @hour.Hour@sp " 
+                                         style="background-color: white;" >
+                                       <input name="hour" value="@hour.Hour" readonly size="5" style="display: none;" >
+
+                                   </div>
+
+                                   <script>
+                                        $(".@hour.Hour@sp" ).on("click",function(){
+                                            var regis_clone = $("#inforegis").clone();
+                                            regis_clone.addClass("offonclick");
+                                            regis_clone.show();
+                                            regis_clone.find("input[type=text][name=email]").val("@Model.BacSi.email");
+                                            regis_clone.find("input[type=text][name=hoten]").val("@Model.BacSi.hoten");
+                                            regis_clone.find("input[type=text][name=ngay]").val("@hour.ToShortDateString()");
+                                            regis_clone.find("input[type=text][name=gio]").val("@hour.ToShortTimeString()");
+
+
+                                            $("#content").append(regis_clone);
+                                        })
+
+                                    </script>
+                                }
+                            }
+                            else
+                            {
+                                <div class="content-body-2 form-dayofweek" style="background-color: orangered;">
+                                    <input name="hour" value="@hour.Hour" readonly size="5" style="display: none;">
+                                </div>
+                            }
+                            hour = hour.AddHours(1);
+                        }
+                    }
+                </div>
+                            dt = dt.AddDays(1);
+                            sp++;
+                        }
+        }
+        
+
+    </div>
+   
+</div>
+<div id="clone" style="display: none;">
+
+    <div class="content-body-2 title-dayofweek">
+        22/6/2022
+    </div>
+
+    <div class="content-body-2 form-dayofweek" style="background-color: white;">
+        <input name="hour" value="6/22/2022 7:00 AM" readonly size="13">
+    </div>
+
+    <div class="content-body-1"></div>
+
+
+    @* Code dang ky mot khung gio *@
+    <div id="inforegis">
+        <form action="Accept" method="get">
+            <table>
+                <tr>
+                    <td><Label style="display: none">Email BacSi:</Label></td>
+                    <td><input type="text" name="email" style="display: none"></td>
+                </tr>
+                <tr>
+                    <td><Label>Bác Sĩ:</Label></td>
+                    <td><input type="text" name="hoten"></td>
+                </tr>
+                <tr>
+                    <td><Label>Ngày:</Label></td>
+                    <td><input  type="text" name="ngay"></td>
+                </tr>
+                <tr>
+                    <td><Label>Giờ:</Label></td>
+                    <td><input  type="text" name="gio"></td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Đăng ký" style="float: left">
+            <div onclick="closeForm()" style="border: 1px solid red;
+                                                border-radius: 10px;
+                                                background-color: orangered;
+                                                color: white;
+                                                width: 50px; float: left; margin-left: 170px; height: 27px; text-align: center;
+                                                font-size: 18px; ">Hủy</div>
+
+        </form>
+
+    </div>
+</div>
+<style>
+    .content-body-title{
+    width: 50px;
+    float: left;
+}
+
+    .content-body-1
+{
+    width: 13.5%;
+    height: 100%;
+    background-color: gray;
+    border-right: 1px solid white;
+    float: left;
+}
+    .content-body-2
+{
+    width: 100%;
+    height: 45.5px;
+    border:1px solid rgb(255, 254, 254);
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    border: 1px solid black;
+}
+
+    #content-head{
+    height: 30%;
+    width: 100%;
+    background-color: lightblue;
+    border-radius: 15px;
+    border: 1px solid black;
+    color: black;
+}
+
+    .head-helper{
+    float: left;
+    height: 80%;
+    border: 1px solid black;
+    width: 210px;
+    margin-left: 10px;
+    border-radius: 15px;
+    margin:5px;
+    padding: 30px;
+    background-color: grey;
+}
+</style>
+

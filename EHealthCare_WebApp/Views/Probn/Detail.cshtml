@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
+    DbEHealthcare.Entities.ChiTietTuVan cttv = ViewData["cttv"] as DbEHealthcare.Entities.ChiTietTuVan;
+}
+
+<div id="clone ">
+    <div id="detail">
+        <div id="trieuchung" class="detail-data">
+            <label>Triệu chứng </label><br />
+            <hr />
+            <textarea class="detail-tc" rows="3" readonly>@cttv.trieuChung</textarea><br />
+
+            <label>Chuẩn đoán </label><br />
+            <hr />
+            <textarea class="detail-cd" rows="3" readonly>@cttv.chuanDoan</textarea><br />
+
+            <label>Chỉ định </label><br />
+            <hr />
+            <textarea class="detail-cdd" rows="3" readonly>@cttv.chiDinh</textarea>
+        </div>
+
+    </div>
+</div>
+<style>
+    
+    #detail {
+        margin-left: 150px;
+        width: 500px;
+        height: 650px;
+        background-color: lightgray;
+        border-radius: 15px;
+        padding-top: 20px;
+        font-family: 'Times New Roman';
+        font-weight: bold;
+        font-size: 27px;
+    }
+
+    textarea {
+        width: 500px;
+        height: 150px;
+    }
+</style>
+

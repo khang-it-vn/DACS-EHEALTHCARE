@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
+    List<DbEHealthcare.Entities.LichTuVan> lichtuvans = ViewData["lichtuvans"] as List<DbEHealthcare.Entities.LichTuVan>;
+    int sll = 0;
+    int ct = 100;
+
+    string chitiettuvan = ViewData["chitiettuvans"] as string;
+}
+<script>
+    function offdetail() {
+        $(".detail-clone-off").remove();
+    }
+    var chitiettuvans = JSON.parse("@Html.Raw(HttpUtility.JavaScriptStringEncode(chitiettuvan))")
+</script>
+<link rel="stylesheet" href="~/Content/css/history.css" />
+<div id="content">
+        @foreach (DbEHealthcare.Entities.LichTuVan ltv in lichtuvans)
+        {
+            <div id="content-element" >
+                <div id="element-state" class="element-1" style="background-color: @(ltv.trangthai == true? "#00FFE0":"lightgrey")">
+                    <div id="element-1-img">
+                        <img src="~/Content/images/@ltv.BacSi.hinhanh" />
+                    </div>
+                    <div id="element-1-data">
+                        <table>
+                            <tr>
+                                <td>Bác Sĩ:</td>
+                                <td>@ltv.BacSi.hoten</td>
+                            </tr>
+                            <tr>
+                                <td>Ngày:</td>
+                                <td>@ltv.ntv.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td>Giờ:</td>
+                                <td>@ltv.ntv.Hour</td>
+                            </tr>
+                            <tr>
+                                <td>Chuyên khoa:</td>
+                                <td>@ltv.BacSi.ChuyenKhoa.ten_CK</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="element-detail" class="element-2 @(ltv.id_cttv)detail">
+                    <label style="margin-top: 65px; color: black; ">
+                         Chi Tiết
+                    </label>
+                    <script>
+                        $(".@(ltv.id_cttv)detail").on("click", function () {
+                            var chiTietTuVan = chitiettuvans.find(ct => ct.id_cttv == @ltv.id_cttv)
+                            var detail_clone = $("#detail-clone").clone();
+                            detail_clone.addClass("detail-clone-off");
+                            detail_clone.find("div.trieuchung").text(chiTietTuVan.trieuChung);                 
+                            detail_clone.find("div.chuandoan").text(chiTietTuVan.chuanDoan);
+                            detail_clone.find("div.chidinh").text(chiTietTuVan.chiDinh);
+                            detail_clone.show();
+                            $("#content").append(detail_clone);
+                        })
+                    </script>
+                </div>
+            </div>
+            sll++;ct++;
+        }
+
+</div>
+<div id="detail-clone" style="display: none" >
+    <div class="close-detail" style="text-align: center; width: 470px; height: 30px; border: 1px solid black; color: red; font-weight: 600;" onclick="offdetail()">Close[X]</div>
+    <label>Triệu chứng</label>
+    <br />
+    <div class="trieuchung detail-mar">
+       
+
+    </div>
+    <br />
+    <label>Chuẩn Đoán</label>
+    <br />
+    
+    <div class="chuandoan detail-mar" >
+  
+       
+    </div>
+    <br />
+    <label>Chỉ Định</label>
+    <br />
+    <div class="chidinh detail-mar" >
+            
+    </div>
+</div>
+<link rel="stylesheet" href="~/Content/css/detail.css"/>
+<style>
+
+    #content{
+        font-family: Arial;
+        font-weight: 400;
+        color: black;
+    }
+
+
+#content-element{
+    margin: 10px;
+    background-color: lightgray;
+    width: 580px;
+    height: 150px;
+    border-radius: 15px;
+    padding: 5px 5px;
+    float: left;
+   
+}
+.element-1{
+    width: 450px;
+    height: 100%;
+    border-radius: 15px;
+    float: left;
+    margin: 0px 5px;
+    padding: 5px 10px;  
+    font-weight: 500;
+    color: black;
+}
+.element-2{
+    width: 90px;
+    height: 100%;
+    border-radius: 15px;
+    float: left;
+    margin: 0px 5px;
+    text-align: center;
+    background-color: aqua;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+#element-1-img{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+
+}
+#element-1-data{
+    float: left;
+    margin: 10px;
+}
+ #detail-clone
+{
+    position: absolute;
+    margin-left: 150px;
+    margin-top: 50px;
+    width: 500px;
+    height: 650px;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.detail-mar{
+    width: 470px; 
+    height: 150px; 
+    background-color: lightgray; 
+    display: flex;
+}
+
+.close-detail{
+    background-color: aquamarine;
+    cursor: pointer;
+}
+</style>
+@*@{ 
+    foreach (DbEHealthcare.Entities.ChiTietTuVan c in chitietlichtuvans)
+    {
+         <script>
+             var chitiettuvan = {};
+             chitiettuvan['id_cttv'] = @c.id_cttv;
+             chitiettuvan['trieuchung'] = '@( System.Convert.ToBase64String(c.trieuChung))';
+             chitiettuvan['chuandoan'] = '@( System.Text.Encoding.UTF8.GetString(c.chuanDoan))';
+             chitiettuvan['chidinh'] = '@( System.Text.Encoding.UTF8.GetString(c.chiDinh))';
+             chitiettuvans.push(chitiettuvan);
+         </script>
+    }
+}*@

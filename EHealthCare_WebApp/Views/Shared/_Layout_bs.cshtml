@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+@{
+    ViewBag.Title = "Bác Sĩ Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>@ViewBag.Title </title>
+    <script src="~/Content/js/load-image.js"></script>
+    <link rel="stylesheet" href="~/Content/css/probn.css">
+
+</head>
+<body>
+    <div id="menu-bar">
+        <div id="div-image">
+            <img src="~/Content/images/@Session["img"]">
+        </div>
+        <hr>
+        <div id="div-tools">
+            <div id="tool-home">
+                <div class="img-tool" onclick="loadmanage()">
+                    <img src="~/Content/images/contact.png">
+                </div>
+                <hr>
+            </div>
+
+            <div id="tool-home">
+                <div class="img-tool" onclick="loadMission()">
+                    <img src="~/Content/images/calendar.png">
+                </div>
+                <hr>
+            </div>
+
+            <div id="tool-home">
+                <div onclick="loadhistory()">
+                    <img src="~/Content/images/history.png">
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div id="div-profile" onclick="loadProfile()">
+            <hr>
+            <img src="~/Content/images/profile.png">
+            <hr>
+        </div>
+    </div>
+    @RenderBody()
+
+
+    <script>
+        function loadmanage() {
+            window.location.replace ("http://localhost:57513/Probs/Manage");
+        }
+        function loadProfile() {
+            window.location.replace("http://localhost:57513/Probs/Index");
+        }
+        function loadhistory() {
+            window.location.replace("http://localhost:57513/Probs/History");
+        }
+
+        function loadMisson() {
+            window.location.replace("http://localhost:57513/Probs/Mission");
+        }
+    </script>
+</body>
+
+</html>

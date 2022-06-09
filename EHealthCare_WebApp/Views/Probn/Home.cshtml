@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
+    List<DbEHealthcare.Entities.BacSi> bacsis = ViewData["bacsis"] as List<DbEHealthcare.Entities.BacSi>;
+    List<DbEHealthcare.Entities.ChuyenKhoa> chuyenkhoas = ViewData["chuyenkhoas"] as List<DbEHealthcare.Entities.ChuyenKhoa>;
+}
+
+
+<div id="content">
+    <div id="filter">
+       <div>
+               <div class="timkiem-ck">
+                   <table>
+                       <tr>
+                           <td><label>Tìm kiếm theo chuyên khoa:</label></td>
+                           <td>
+                               <form action="Filter" method="get">
+                                   <select name="chuyenkhoa" id="chuyenkhoa" style="width: 300px !important;">
+                                       @foreach (DbEHealthcare.Entities.ChuyenKhoa ck in chuyenkhoas)
+                                       {
+                                           <option value="@ck.ma_CK">@ck.ten_CK</option>
+                                       }
+                                   </select>
+                                   <button>Tìm kiếm</button>
+                               </form>
+                           </td>
+                       </tr>
+                   </table>
+                </div>
+
+               <div class="timkiem-name">
+                   <table>
+                       <tr>
+                           <td style="width: 205px; text-align: left"><label>Tìm kiếm theo họ tên:</label></td>
+                           <td>
+                                <form action="FilterName" method="get">
+                                    <input type="text" name="hoten" placeholder="enter the name of Doctor" size="42" />
+                                    <button>Tìm kiếm</button>
+                                 </form>
+                           </td>
+                       </tr>
+                   </table>
+                   
+               </div>
+           
+       </div>
+    </div>
+<style>
+    #filter{
+    background-color: #00FFE0;
+     font-family: 'Times New Roman';
+     margin: 5px 10px;
+}
+#chuyenkhoa{
+    width: 300px !important;
+    margin-left: 20px;
+}
+button{
+    font-family: 'Times New Roman';
+    font-size: 12px;
+    border-radius: 10px;
+}
+button:hover{
+    background-color: black;
+    color: white;
+}
+
+.timkiem-name input{
+    border-radius: 0;
+    border: 1px solid black;
+    font-family: 'Times New Roman';
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+</style>
+    @{
+        Random random = new Random();
+        bool state = false;
+        while (bacsis.Count > 0)
+        {
+            int random_class = random.Next(999, 99999);
+
+            if(state)
+            {
+                <div class="xemthem" id="@random_class.ToString()" style="border: 0.5px solid grey">
+                    <hr style="float: left; width:25% ; margin-left: 20px; margin-right: 20px" />
+                    <div  style="border: 1px solid grey; float: left; width: 30%;text-align: center">
+                        Xem thêm
+                    </div>
+                    <hr style="float: left;width:30%;margin-left: 20px" />
+                </div>
+                <script>
+                    $("#@random_class.ToString()").on("click", function () {
+                        var list_class = document.getElementsByClassName("@random_class.ToString()");
+                        for(var i = 0; i < list_class.length; i++)
+                        {
+                            list_class[i].style.display = 'block';
+                        }
+                        document.getElementById("@random_class.ToString()").style.display = 'none';
+                    })
+                </script>
+            }
+            for (int i = 0; i < 12 && bacsis.Count > 0; i++)
+            {
+                
+                DbEHealthcare.Entities.BacSi bs = bacsis[0];
+                <div id="cont-obj" class="@(state ? random_class.ToString() : "") @bs.email" style="@(state ?"display: none" : "")">
+                    <div id="cont-obj-img">
+                        <img src="~/Content/images/@bs.hinhanh">
+                    </div>
+                    <hr>
+                    <div id="cont-obj-info">
+                        Bác Sĩ: @bs.hoten
+                        <br>
+                        Chuyên Khoa: @bs.ChuyenKhoa.ten_CK
+                    </div>
+                </div>
+                <script>
+                    $(".@bs.email").on("click", function () {
+                        window.location.href = "Regis?email=@bs.email";
+                    })
+                </script>
+                bacsis.Remove(bs);
+            }
+            state = !state;
+    }
+
+    }
+   
+</div>
+<link rel="stylesheet" href="~/Content/css/home.css" />
+

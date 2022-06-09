@@ -1,0 +1,10 @@
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\obj\Debug\DbEHealthCare.csprojResolveAssemblyReference.cache
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\DbEHealthCare.dll.config
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\DbEHealthCare.dll
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\DbEHealthCare.pdb
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\EntityFramework.dll
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.dll
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\EntityFramework.xml
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.xml
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\obj\Debug\DbEHealthCare.dll
+E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\obj\Debug\DbEHealthCare.pdb
