@@ -142,5 +142,16 @@ namespace Services
         {
             return chiTietTuVans.GetAll().ToList();
         }
+
+        public LichTuVan getLichTuVanBy(Expression<Func<LichTuVan, bool>> where)
+        {
+            return lichTuVans.GetBy(where);
+
+        }
+
+        public void UpdateCTTV(ChiTietTuVan cttv)
+        {
+            chiTietTuVans.Edit(cttv);
+        }
     }
 }

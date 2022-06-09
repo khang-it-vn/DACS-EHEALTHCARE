@@ -355,6 +355,7 @@
     <Compile Include="Utils\MailSMTP.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Data_Process\room.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\detail.css" />
@@ -411,10 +412,23 @@
     <Content Include="Content\images\ton.jpeg" />
     <Content Include="Content\images\undraw_file_sync_ot38.svg" />
     <Content Include="Content\js\load-image.js" />
+    <Content Include="dbconnect.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="index.html" />
+    <Content Include="public\Assets\css\bootstrap.min.css" />
+    <Content Include="public\Assets\css\jumbotron.css" />
+    <Content Include="public\Assets\css\materialize.min.css" />
+    <Content Include="public\Assets\css\profile.css" />
+    <Content Include="public\Assets\css\style.css" />
+    <Content Include="public\Assets\images\avartar.png" />
+    <Content Include="public\Assets\images\image_background.jpg" />
+    <Content Include="public\Assets\images\img.png" />
+    <Content Include="public\Assets\images\other.jpg" />
+    <Content Include="public\Assets\js\app.js" />
+    <Content Include="public\Assets\js\jquery.min.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -434,6 +448,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="server.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -486,9 +501,11 @@
     <Content Include="Views\Probs\FilterHistory.cshtml" />
     <Content Include="Views\Probs\FilterMission.cshtml" />
     <Content Include="Views\Probn\FilterHistory.cshtml" />
+    <Content Include="Views\Probn\Books.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Data_Process\" />
+    <Folder Include="public\attachment\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

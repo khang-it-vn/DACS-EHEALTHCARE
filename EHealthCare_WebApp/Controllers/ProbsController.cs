@@ -51,7 +51,7 @@ namespace EHealthCare_WebApp.Controllers
 
             ChiTietTuVan newest_cttv = cttvs.OrderByDescending(ct => ct.id_cttv).First();
 
-            LichTuVan ltv = new LichTuVan() {  email_BS = email, ntv = _ntv , email_BN = null, phongtuvan = newest_cttv.id_cttv};
+            LichTuVan ltv = new LichTuVan() {  email_BS = email, ntv = _ntv , email_BN = null, id_cttv = newest_cttv.id_cttv};
 
             EHealthCareService.Instance.Add(ltv);
             EHealthCareService.Instance.Save();
@@ -113,20 +113,20 @@ namespace EHealthCare_WebApp.Controllers
             List<ChiTietTuVanDAO> chitiettuvan_of_bacsi = new List<ChiTietTuVanDAO>();
             lichtuvan_of_bs.ForEach(ltv =>
             {
-                chitiettuvan_of_bacsi.ForEach(ct =>
-                {
-                    if (ct.id_cttv == ltv.id_cttv)
+                    chitiettuvan.ForEach(ct =>
                     {
-                        ChiTietTuVanDAO _chitiettuvan = new ChiTietTuVanDAO();
+                        if (ct.id_cttv == ltv.id_cttv)
+                        {
+                            ChiTietTuVanDAO _chitiettuvan = new ChiTietTuVanDAO();
 
-                        _chitiettuvan.id_cttv = ct.id_cttv;
-                        _chitiettuvan.chiDinh = ct.chiDinh;
-                        _chitiettuvan.chuanDoan = ct.chuanDoan;
-                        _chitiettuvan.trieuChung = ct.trieuChung;
-                        _chitiettuvan.ghiChu = ct.ghiChu;
-                        chitiettuvan_of_bacsi.Add(_chitiettuvan);
-                    }
-                });
+                            _chitiettuvan.id_cttv = ct.id_cttv;
+                            _chitiettuvan.chiDinh = ct.chiDinh;
+                            _chitiettuvan.chuanDoan = ct.chuanDoan;
+                            _chitiettuvan.trieuChung = ct.trieuChung;
+                            _chitiettuvan.ghiChu = ct.ghiChu;
+                            chitiettuvan_of_bacsi.Add(_chitiettuvan);
+                        }
+                    });
             });
 
             JavaScriptSerializer json = new JavaScriptSerializer();
@@ -211,7 +211,7 @@ namespace EHealthCare_WebApp.Controllers
             BacSi bacsi = EHealthCareService.Instance.getBacSiBy(bs => bs.email.CompareTo(email) == 0);
             List<LichTuVan> lichtuvan_all = EHealthCareService.Instance.getLichTuVans();
 
-            List<LichTuVan> lichtuvan_of_bs = lichtuvan_all.Where(l => l.email_BS.CompareTo(bacsi.email) == 0 && l.ntv >= DateTime.Now).ToList();
+            List<LichTuVan> lichtuvan_of_bs = lichtuvan_all.Where(l => l.email_BS.CompareTo(bacsi.email) == 0 && l.ntv >= DateTime.Now && l.email_BN != null).ToList();
 
             ViewData["lichtuvans"] = lichtuvan_of_bs;
 
@@ -220,25 +220,40 @@ namespace EHealthCare_WebApp.Controllers
             List<ChiTietTuVanDAO> chitiettuvan_of_bacsi = new List<ChiTietTuVanDAO>();
             lichtuvan_of_bs.ForEach(ltv =>
            {
-               chitiettuvan_of_bacsi.ForEach(ct =>
-               {
-                   if (ct.id_cttv == ltv.id_cttv)
+               chitiettuvan.ForEach(ct =>
                    {
-                       ChiTietTuVanDAO _chitiettuvan = new ChiTietTuVanDAO();
+                       if (ct.id_cttv == ltv.id_cttv)
+                       {
+                           ChiTietTuVanDAO _chitiettuvan = new ChiTietTuVanDAO();
 
-                       _chitiettuvan.id_cttv = ct.id_cttv;
-                       _chitiettuvan.chiDinh = ct.chiDinh;
-                       _chitiettuvan.chuanDoan = ct.chuanDoan;
-                       _chitiettuvan.trieuChung = ct.trieuChung;
-                       _chitiettuvan.ghiChu = ct.ghiChu;
-                       chitiettuvan_of_bacsi.Add(_chitiettuvan);
-                   }
-               });
+                           _chitiettuvan.id_cttv = ct.id_cttv;
+                           _chitiettuvan.chiDinh = ct.chiDinh;
+                           _chitiettuvan.chuanDoan = ct.chuanDoan;
+                           _chitiettuvan.trieuChung = ct.trieuChung;
+                           _chitiettuvan.ghiChu = ct.ghiChu;
+                           chitiettuvan_of_bacsi.Add(_chitiettuvan);
+                       }
+                   });
            });
 
             JavaScriptSerializer json = new JavaScriptSerializer();
             ViewData["chitiettuvans"] = json.Serialize(chitiettuvan_of_bacsi);
             return View();
+        }
+
+        public ActionResult SaveDetail(int id_cttv, string chiDinh, string chuanDoan, string trieuChung, string ghiChu)
+        {
+            ChiTietTuVan cttv = EHealthCareService.Instance.getChiTietTuVan(id_cttv);
+
+            cttv.chiDinh = chiDinh;
+            cttv.chuanDoan = chuanDoan;
+            cttv.trieuChung = trieuChung;
+            cttv.ghiChu = ghiChu;
+            cttv.ketQua = true;
+
+            EHealthCareService.Instance.UpdateCTTV(cttv);
+            EHealthCareService.Instance.Save();
+            return RedirectToAction("Mission");
         }
     }
 }

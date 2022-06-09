@@ -29,7 +29,12 @@
                 </div>
                 <hr>
             </div>
-
+            <div id="tool-home">
+                <div class="img-tool" onclick="loadBooks()">
+                    <img src="~/Content/images/calendar.png">
+                </div>
+                <hr>
+            </div>
             <div id="tool-home">
                 <div onclick="loadHistory()">
                     <img src="~/Content/images/histories.png">
@@ -61,6 +66,10 @@
     function loadHistory()
     {
         window.location.replace("http://localhost:57513/Probn/History")
+    }
+
+    function loadBooks() {
+        window.location.replace("http://localhost:57513/Probn/Books")
     }
     </script>
 </body>

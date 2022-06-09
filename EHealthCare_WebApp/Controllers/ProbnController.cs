@@ -1,5 +1,6 @@
 ﻿using DbEHealthcare.Entities;
 using EHealthCare_WebApp.Models;
+using EHealthCare_WebApp.Utils;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -95,15 +96,36 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult Accept(String email, String ngay, String gio)
         {
-            DateTime _ntv = DateTime.Parse(ngay + " " + gio);
+            try
+            {
+                DateTime _ntv = DateTime.Parse(ngay + " " + gio);
 
-            String email_BN = (String)Session["email"];
-            this.emailbs = email;
-            Session["bs_email"] = email;
-            LichTuVan ltv = new LichTuVan() { email_BN = email_BN, email_BS = this.emailbs, ntv = _ntv };
+                String email_BN = (String)Session["email"];
+                this.emailbs = email;
+                Session["bs_email"] = email;
+                LichTuVan ltv = EHealthCareService.Instance.getLichTuVanBy(l => DateTime.Compare(l.ntv,_ntv) == 0 && l.email_BS.CompareTo(emailbs) == 0);
+                ltv.email_BN = email_BN;
 
-            EHealthCareService.Instance.Edit(ltv);
-            EHealthCareService.Instance.Save();
+                string file_room = Server.MapPath("~/App_Data/Data_Process/room.txt");
+                string room_string = System.IO.File.ReadAllText(file_room);
+                int room = int.Parse(room_string);
+                room++;
+                System.IO.File.WriteAllText(file_room, room.ToString());
+                
+                ltv.phongtuvan = room;
+                EHealthCareService.Instance.Edit(ltv);
+                EHealthCareService.Instance.Save();
+
+                string body = "<h1>Hoàn tất mail<h1>";
+                string subject = "Thông Báo Xác Nhận Đăng Ký Lịch Tư Vấn Khám Bệnh";
+
+                MailSMTP.Send(body, subject, email_BN);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+            
 
             return RedirectToAction("Home");
         }
@@ -201,6 +223,39 @@ namespace EHealthCare_WebApp.Controllers
             List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
             ViewData["bacsis"] = bacsis_filter;
             ViewData["chuyenkhoas"] = chuyenkhoas;
+            return View();
+        }
+
+        public ActionResult Books()
+        {
+            String email = Session["email"] as String;
+            List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
+            List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
+            List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv =>  ltv.ntv > DateTime.Now && String.Compare(ltv.email_BN, email) == 0).ToList();
+            ViewData["lichtuvans"] = lichtuvanOfSession;
+
+            List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
+            foreach (LichTuVan l in lichtuvanOfSession)
+            {
+                foreach (ChiTietTuVan ct in chitietltv)
+                {
+                    if (l.id_cttv == ct.id_cttv)
+                    {
+                        ChiTietTuVanDAO cttv_dao = new ChiTietTuVanDAO();
+                        cttv_dao.id_cttv = ct.id_cttv;
+                        cttv_dao.chiDinh = ct.chiDinh;
+                        cttv_dao.chuanDoan = ct.chuanDoan;
+                        cttv_dao.trieuChung = ct.trieuChung;
+                        cttv_dao.ghiChu = ct.ghiChu;
+                        chitietlichtuvan.Add(cttv_dao);
+                    }
+                }
+            }
+
+            JavaScriptSerializer Json = new JavaScriptSerializer();
+            string chitietlichtuvan_json = Json.Serialize(chitietlichtuvan);
+
+            ViewData["chitiettuvans"] = chitietlichtuvan_json;
             return View();
         }
     }
