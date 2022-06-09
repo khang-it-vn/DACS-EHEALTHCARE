@@ -24,7 +24,8 @@ namespace DbEHealthcare.Entities
         public int? id_cttv { get; set; }
 
         public bool? trangthai { get; set; }
-
+        
+        public int? phongtuvan { get; set; }
         public virtual BacSi BacSi { get; set; }
 
         public virtual BenhNhan BenhNhan { get; set; }

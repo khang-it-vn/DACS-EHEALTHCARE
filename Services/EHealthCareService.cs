@@ -69,6 +69,11 @@ namespace Services
             this.lichTuVans = new LichTuVanRepository(dbContext);
         }
 
+        public void AddChiTietTuVan(ChiTietTuVan cttv)
+        {
+            chiTietTuVans.Add(cttv);
+        }
+
         public void UpdateBN( BenhNhan bn)
         {
             benhNhans.Edit(bn);

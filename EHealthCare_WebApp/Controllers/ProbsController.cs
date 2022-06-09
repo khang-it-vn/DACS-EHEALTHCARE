@@ -42,7 +42,16 @@ namespace EHealthCare_WebApp.Controllers
 
             String email_bs = (String)Session["email"];
 
-            LichTuVan ltv = new LichTuVan() {  email_BS = email, ntv = _ntv , email_BN = null};
+            ChiTietTuVan cttv = new ChiTietTuVan() { ketQua = false };
+
+            EHealthCareService.Instance.AddChiTietTuVan(cttv);
+            EHealthCareService.Instance.Save();
+
+            List<ChiTietTuVan> cttvs = EHealthCareService.Instance.getChiTietTuVans();
+
+            ChiTietTuVan newest_cttv = cttvs.OrderByDescending(ct => ct.id_cttv).First();
+
+            LichTuVan ltv = new LichTuVan() {  email_BS = email, ntv = _ntv , email_BN = null, phongtuvan = newest_cttv.id_cttv};
 
             EHealthCareService.Instance.Add(ltv);
             EHealthCareService.Instance.Save();
