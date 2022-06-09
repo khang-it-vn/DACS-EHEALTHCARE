@@ -482,6 +482,9 @@
     <Content Include="Views\Probs\Manage.cshtml" />
     <Content Include="Views\Probs\Index.cshtml" />
     <Content Include="Views\Probs\Mission.cshtml" />
+    <Content Include="Views\Probs\FilterHistory.cshtml" />
+    <Content Include="Views\Probs\FilterMission.cshtml" />
+    <Content Include="Views\Probn\FilterHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

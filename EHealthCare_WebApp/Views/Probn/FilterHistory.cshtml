@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "History";
-    Layout = "~/Views/Shared/_Layout_bs.cshtml";
+    ViewBag.Title = "FilterHistory";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
     List<DbEHealthcare.Entities.LichTuVan> lichtuvans = ViewData["lichtuvans"] as List<DbEHealthcare.Entities.LichTuVan>;
     int sll = 0;
     int ct = 100;
@@ -9,6 +9,7 @@
     string chitiettuvan = ViewData["chitiettuvans"] as string;
 }
 <script>
+
     function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -35,62 +36,28 @@
 <link rel="stylesheet" href="~/Content/css/history.css" />
 <div id="content">
 
-            @* Xử lý lọc
-
-                <script> -------------
-                function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-
-            return [year, month, day].join('-');
-        }
-        var dob = formatDate("@DateTime.Now");
-        $(document).ready(function(){
-            var element = document.getElementById("datetimefilter");
-            element.value = dob;
-        });
-                html --------------
-                <div class="form-inline" style="padding-left: 30px;">
-                <form action="Probs/FilterHistory" method="get">
-                    <br />
-                    <label style="display: inline;">Lọc theo ngày: </label>
-                    <input type="date" id="datetimefilter" name="date" style="border-radius: 0; border: 1px solid black; font-family: Arial; font-weight: 500; font-size: 15px; margin-right: 7px; "/>
-                    <button style="border: none;">Lọc</button>
-                </form>
-            </div>
-            <hr />
-
-            *@
     <div class="form-inline" style="padding-left: 30px;">
         <form action="FilterHistory" method="get">
             <br />
             <label style="display: inline;">Lọc theo ngày: </label>
-            <input type="date" id="datetimefilter" name="date" style="border-radius: 0; border: 1px solid black; font-family: Arial; font-weight: 500; font-size: 15px; margin-right: 7px; "/>
+            <input type="date" id="datetimefilter" name="date" style="border-radius: 0; border: 1px solid black; font-family: Arial; font-weight: 500; font-size: 15px; margin-right: 7px; " />
             <button style="border: none;">Lọc</button>
         </form>
     </div>
     <hr />
-
 
     @foreach (DbEHealthcare.Entities.LichTuVan ltv in lichtuvans)
     {
         <div id="content-element">
             <div id="element-state" class="element-1" style="background-color: @(ltv.trangthai == true? "#00FFE0":"lightgrey")">
                 <div id="element-1-img">
-                    <img src="~/Content/images/@ltv.BenhNhan.hinhanh" />
+                    <img src="~/Content/images/@ltv.BacSi.hinhanh" />
                 </div>
                 <div id="element-1-data">
                     <table>
                         <tr>
-                            <td>Bệnh Nhân:</td>
-                            <td>@ltv.BenhNhan.hoten</td>
+                            <td>Bác Sĩ:</td>
+                            <td>@ltv.BacSi.hoten</td>
                         </tr>
                         <tr>
                             <td>Ngày:</td>
@@ -99,6 +66,10 @@
                         <tr>
                             <td>Giờ:</td>
                             <td>@ltv.ntv.Hour</td>
+                        </tr>
+                        <tr>
+                            <td>Chuyên khoa:</td>
+                            <td>@ltv.BacSi.ChuyenKhoa.ten_CK</td>
                         </tr>
                     </table>
                 </div>
@@ -115,7 +86,6 @@
                             detail_clone.find("div.trieuchung").text(chiTietTuVan.trieuChung);
                             detail_clone.find("div.chuandoan").text(chiTietTuVan.chuanDoan);
                             detail_clone.find("div.chidinh").text(chiTietTuVan.chiDinh);
-                            detail_clone.find("div.ghichu").text(chiTietTuVan.ghiChu);
                             detail_clone.show();
                             $("#content").append(detail_clone);
                         })
@@ -127,7 +97,7 @@
 
 </div>
 <div id="detail-clone" style="display: none">
-    <div class="close-detail" style="text-align: center; width: 565px; height: 30px; border: 1px solid black; color: red; font-weight: 600;" onclick="offdetail()">Close[X]</div>
+    <div class="close-detail" style="text-align: center; width: 470px; height: 30px; border: 1px solid black; color: red; font-weight: 600;" onclick="offdetail()">Close[X]</div>
     <label>Triệu chứng</label>
     <br />
     <div class="trieuchung detail-mar">
@@ -146,11 +116,6 @@
     <label>Chỉ Định</label>
     <br />
     <div class="chidinh detail-mar">
-
-    </div>
-    <label>Ghi Chú</label>
-    <br />
-    <div class="ghichu detail-mar">
 
     </div>
 </div>
@@ -216,8 +181,8 @@
         position: absolute;
         margin-left: 150px;
         margin-top: 50px;
-        width: 590px;
-        height: 660px;
+        width: 500px;
+        height: 650px;
         background-color: white;
         border-radius: 15px;
         border: 1px solid black;
@@ -225,8 +190,8 @@
     }
 
     .detail-mar {
-        width: 565px;
-        height: 108px;
+        width: 470px;
+        height: 150px;
         background-color: lightgray;
         display: flex;
     }
@@ -235,19 +200,4 @@
         background-color: aquamarine;
         cursor: pointer;
     }
-    
 </style>
-
-@*@{
-        foreach (DbEHealthcare.Entities.ChiTietTuVan c in chitietlichtuvans)
-        {
-             <script>
-                 var chitiettuvan = {};
-                 chitiettuvan['id_cttv'] = @c.id_cttv;
-                 chitiettuvan['trieuchung'] = '@( System.Convert.ToBase64String(c.trieuChung))';
-                 chitiettuvan['chuandoan'] = '@( System.Text.Encoding.UTF8.GetString(c.chuanDoan))';
-                 chitiettuvan['chidinh'] = '@( System.Text.Encoding.UTF8.GetString(c.chiDinh))';
-                 chitiettuvans.push(chitiettuvan);
-             </script>
-        }
-    }*@

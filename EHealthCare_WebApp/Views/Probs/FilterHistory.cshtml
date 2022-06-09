@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "History";
+    ViewBag.Title = "FilterHistory";
     Layout = "~/Views/Shared/_Layout_bs.cshtml";
     List<DbEHealthcare.Entities.LichTuVan> lichtuvans = ViewData["lichtuvans"] as List<DbEHealthcare.Entities.LichTuVan>;
     int sll = 0;
@@ -22,11 +22,13 @@
 
         return [year, month, day].join('-');
     }
+
     var dob = formatDate("@DateTime.Now");
     $(document).ready(function(){
         var element = document.getElementById("datetimefilter");
         element.value = dob;
     });
+
     function offdetail() {
         $(".detail-clone-off").remove();
     }
@@ -35,44 +37,11 @@
 <link rel="stylesheet" href="~/Content/css/history.css" />
 <div id="content">
 
-            @* Xử lý lọc
-
-                <script> -------------
-                function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-
-            return [year, month, day].join('-');
-        }
-        var dob = formatDate("@DateTime.Now");
-        $(document).ready(function(){
-            var element = document.getElementById("datetimefilter");
-            element.value = dob;
-        });
-                html --------------
-                <div class="form-inline" style="padding-left: 30px;">
-                <form action="Probs/FilterHistory" method="get">
-                    <br />
-                    <label style="display: inline;">Lọc theo ngày: </label>
-                    <input type="date" id="datetimefilter" name="date" style="border-radius: 0; border: 1px solid black; font-family: Arial; font-weight: 500; font-size: 15px; margin-right: 7px; "/>
-                    <button style="border: none;">Lọc</button>
-                </form>
-            </div>
-            <hr />
-
-            *@
     <div class="form-inline" style="padding-left: 30px;">
         <form action="FilterHistory" method="get">
             <br />
             <label style="display: inline;">Lọc theo ngày: </label>
-            <input type="date" id="datetimefilter" name="date" style="border-radius: 0; border: 1px solid black; font-family: Arial; font-weight: 500; font-size: 15px; margin-right: 7px; "/>
+            <input type="date" id="datetimefilter" name="date" style="border-radius: 0; border: 1px solid black; font-family: Arial; font-weight: 500; font-size: 15px; margin-right: 7px; " />
             <button style="border: none;">Lọc</button>
         </form>
     </div>
@@ -235,19 +204,4 @@
         background-color: aquamarine;
         cursor: pointer;
     }
-    
 </style>
-
-@*@{
-        foreach (DbEHealthcare.Entities.ChiTietTuVan c in chitietlichtuvans)
-        {
-             <script>
-                 var chitiettuvan = {};
-                 chitiettuvan['id_cttv'] = @c.id_cttv;
-                 chitiettuvan['trieuchung'] = '@( System.Convert.ToBase64String(c.trieuChung))';
-                 chitiettuvan['chuandoan'] = '@( System.Text.Encoding.UTF8.GetString(c.chuanDoan))';
-                 chitiettuvan['chidinh'] = '@( System.Text.Encoding.UTF8.GetString(c.chiDinh))';
-                 chitiettuvans.push(chitiettuvan);
-             </script>
-        }
-    }*@

@@ -151,6 +151,42 @@ namespace EHealthCare_WebApp.Controllers
             return View();
         }
 
+        public ActionResult FilterHistory(DateTime date)
+        {
+            if(date > DateTime.Now)
+            {
+                return RedirectToAction("History");
+            }
+            String email = Session["email"] as String;
+            List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
+            List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
+            List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => ltv.ntv.Day == date.Day && ltv.ntv.Month == date.Month && ltv.ntv.Year == date.Year && String.Compare(ltv.email_BN, email) == 0).ToList();
+            ViewData["lichtuvans"] = lichtuvanOfSession;
+
+            List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
+            foreach (LichTuVan l in lichtuvanOfSession)
+            {
+                foreach (ChiTietTuVan ct in chitietltv)
+                {
+                    if (l.id_cttv == ct.id_cttv)
+                    {
+                        ChiTietTuVanDAO cttv_dao = new ChiTietTuVanDAO();
+                        cttv_dao.id_cttv = ct.id_cttv;
+                        cttv_dao.chiDinh = ct.chiDinh;
+                        cttv_dao.chuanDoan = ct.chuanDoan;
+                        cttv_dao.trieuChung = ct.trieuChung;
+                        cttv_dao.ghiChu = ct.ghiChu;
+                        chitietlichtuvan.Add(cttv_dao);
+                    }
+                }
+            }
+
+            JavaScriptSerializer Json = new JavaScriptSerializer();
+            string chitietlichtuvan_json = Json.Serialize(chitietlichtuvan);
+
+            ViewData["chitiettuvans"] = chitietlichtuvan_json;
+            return View();
+        }
         public ActionResult Detail(int id)
         {
             ChiTietTuVan cttv = EHealthCareService.Instance.getChiTietTuVan(id);

@@ -84,14 +84,92 @@ namespace EHealthCare_WebApp.Controllers
                         chitietlichtuvan.Add(cttv_dao);
                     }
                 }
-            }
-
+            } 
             JavaScriptSerializer Json = new JavaScriptSerializer();
             string chitietlichtuvan_json = Json.Serialize(chitietlichtuvan);
 
             ViewData["chitiettuvans"] = chitietlichtuvan_json;
             return View();
         }
+
+
+        public ActionResult FilterMission(DateTime date)
+        {
+            if (DateTime.Compare(date, DateTime.Now) < 0)
+            {
+                return RedirectToAction("Mission");
+            }
+
+            string email = Session["email"] as string;
+            BacSi bacsi = EHealthCareService.Instance.getBacSiBy(bs => bs.email.CompareTo(email) == 0);
+            List<LichTuVan> lichtuvan_all = EHealthCareService.Instance.getLichTuVans();
+
+            List<LichTuVan> lichtuvan_of_bs = lichtuvan_all.Where(l => l.email_BS.CompareTo(bacsi.email) == 0 && l.ntv.Day == date.Day && l.ntv.Month == date.Month && l.ntv.Year == date.Year).ToList();
+
+            ViewData["lichtuvans"] = lichtuvan_of_bs;
+
+            List<ChiTietTuVan> chitiettuvan = EHealthCareService.Instance.getChiTietTuVans();
+
+            List<ChiTietTuVanDAO> chitiettuvan_of_bacsi = new List<ChiTietTuVanDAO>();
+            lichtuvan_of_bs.ForEach(ltv =>
+            {
+                chitiettuvan_of_bacsi.ForEach(ct =>
+                {
+                    if (ct.id_cttv == ltv.id_cttv)
+                    {
+                        ChiTietTuVanDAO _chitiettuvan = new ChiTietTuVanDAO();
+
+                        _chitiettuvan.id_cttv = ct.id_cttv;
+                        _chitiettuvan.chiDinh = ct.chiDinh;
+                        _chitiettuvan.chuanDoan = ct.chuanDoan;
+                        _chitiettuvan.trieuChung = ct.trieuChung;
+                        _chitiettuvan.ghiChu = ct.ghiChu;
+                        chitiettuvan_of_bacsi.Add(_chitiettuvan);
+                    }
+                });
+            });
+
+            JavaScriptSerializer json = new JavaScriptSerializer();
+            ViewData["chitiettuvans"] = json.Serialize(chitiettuvan_of_bacsi);
+            return View();
+        }
+        public ActionResult FilterHistory(DateTime date)
+        {
+            if(DateTime.Compare(date, DateTime.Now) > 0)
+            {
+                return RedirectToAction("History");
+            }
+            String email = Session["email"] as String;
+            List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
+            List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => date.Year == ltv.ntv.Year && date.Month == ltv.ntv.Month && date.Day == ltv.ntv.Day && String.Compare(ltv.email_BS, email) == 0 && ltv.email_BN != null).ToList();
+            ViewData["lichtuvans"] = lichtuvanOfSession;
+
+            List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
+
+            List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
+            foreach (LichTuVan l in lichtuvanOfSession)
+            {
+                foreach (ChiTietTuVan ct in chitietltv)
+                {
+                    if (l.id_cttv == ct.id_cttv)
+                    {
+                        ChiTietTuVanDAO cttv_dao = new ChiTietTuVanDAO();
+                        cttv_dao.id_cttv = ct.id_cttv;
+                        cttv_dao.chiDinh = ct.chiDinh;
+                        cttv_dao.chuanDoan = ct.chuanDoan;
+                        cttv_dao.trieuChung = ct.trieuChung;
+                        cttv_dao.ghiChu = ct.ghiChu;
+                        chitietlichtuvan.Add(cttv_dao);
+                    }
+                }
+            }
+            JavaScriptSerializer Json = new JavaScriptSerializer();
+            string chitietlichtuvan_json = Json.Serialize(chitietlichtuvan);
+
+            ViewData["chitiettuvans"] = chitietlichtuvan_json;
+            return View();
+        }
+
         private void SaveImg(HttpPostedFileBase hinhanh, string newNameImg)
         {
             hinhanh.SaveAs(Path.Combine(Server.MapPath("~/Content/images"), newNameImg));
