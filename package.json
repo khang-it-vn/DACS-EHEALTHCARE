@@ -1,0 +1,25 @@
+{
+  "name": "ehealthcare_webapp",
+  "version": "1.0.0",
+  "description": "video call",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenhoangkhangithutech/ehealthcare-dacs.git"
+  },
+  "author": "nhom Thoa Khang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyenhoangkhangithutech/ehealthcare-dacs/issues"
+  },
+  "homepage": "https://github.com/nguyenhoangkhangithutech/ehealthcare-dacs#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "msnodesqlv8": "^2.4.8",
+    "mssql": "^8.1.2",
+    "socketio": "^1.0.0"
+  }
+}
