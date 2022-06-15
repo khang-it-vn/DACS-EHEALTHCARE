@@ -44,7 +44,17 @@ namespace DbEHealthcare.Entities
 
         public int? ma_CK { get; set; }
 
+        [StringLength(6)]
+        public string id_bv { get; set; }
+
+        [StringLength(21)]
+        public string mahv { get; set; }
+
+        public virtual BenhVien BenhVien { get; set; }
+
         public virtual ChuyenKhoa ChuyenKhoa { get; set; }
+
+        public virtual TrinhDo TrinhDo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichTuVan> LichTuVans { get; set; }

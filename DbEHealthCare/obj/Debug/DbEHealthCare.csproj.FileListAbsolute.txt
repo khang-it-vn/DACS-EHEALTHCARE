@@ -8,3 +8,13 @@ E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\D
 E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.xml
 E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\obj\Debug\DbEHealthCare.dll
 E:\Nam 3\HK3-Nam3\DoAnCN\ehealthcare-demo\EHealthCare_WebApp\DbEHealthCare\obj\Debug\DbEHealthCare.pdb
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\DbEHealthCare.dll.config
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\DbEHealthCare.dll
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\DbEHealthCare.pdb
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\EntityFramework.dll
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.dll
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\EntityFramework.xml
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.xml
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\obj\Debug\DbEHealthcare.csprojResolveAssemblyReference.cache
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\obj\Debug\DbEHealthCare.dll
+E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\obj\Debug\DbEHealthCare.pdb
