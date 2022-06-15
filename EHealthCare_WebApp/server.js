@@ -1,7 +1,7 @@
 ﻿const express = require("express");
 const path = require("path");
 var app = express();
-const {conn,sql} = require("./dbconnect");
+//const {conn,sql} = require("./dbconnect");
 var server = app.listen(3000, function () {
     console.log("Listening on port 3000");
 });
@@ -136,14 +136,14 @@ io.on("connection", (socket) => {
         }
     });
     // delete db user
-    socket.on("disconnect", async function () {
+    socket.on("disconnect",  function () {
         var disUser = userConnections.find((p) => p.connectionId == socket.id);
         console.log("Disconnected user socket id is " + socket.id);
-        var pool =  await conn;
-        var sqlString = `delete DETAIL_ROOM where email = '${disUser.user_id}'  and KEY_ROOM = ${disUser.meeting_id}`
-        await pool.request().query(sqlString,function (err,data){
-            console.log(data);
-        })
+        //var pool =  await conn;
+        //var sqlString = `delete DETAIL_ROOM where email = '${disUser.user_id}'  and KEY_ROOM = ${disUser.meeting_id}`
+        //await pool.request().query(sqlString,function (err,data){
+        //    console.log(data);
+        //})
 
         if (disUser) {
             var meetingid = disUser.meeting_id;

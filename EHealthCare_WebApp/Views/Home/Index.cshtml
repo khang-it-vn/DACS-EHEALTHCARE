@@ -1,31 +1,137 @@
 ﻿@{
+    Layout = null;
     ViewBag.Title = "Home Page";
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<head>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>Landing page</title>
+    <!--
+
+    TemplateMo 548 Training Studio
+
+    https://templatemo.com/tm-548-training-studio
+
+    -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="~/public/Assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/public/Assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="~/public/Assets/css/templatemo-training-studio.css">
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <!-- ***** Preloader End ***** -->
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">E-<em style="color: #00FFE0">Healthcare</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="btn" style="background-color: #00FFE0"><a href="Login" style="background-color: #00FFE0"><b>Đăng Nhập</b></a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <video autoplay muted loop id="bg-video">
+            <source src="~/public/Assets/images/gym-video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="video-overlay header-text">
+            <div class="caption">
+                <h6>đăng ký tư vấn khám bệnh mọi lúc mọi nơi với</h6>
+                <h2>E-<em style="color: #00FFE0" >Healthcare</em></h2>
+                <div class="btn btn-info scroll-to-section">
+                    <a href="Regiser" style="color: white">Đăng ký tư vấn</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <!-- ***** Main Banner Area End ***** -->
+    <!-- ***** Features Item Start ***** -->
+    <!-- ***** Features Item End ***** -->
+    <!-- ***** Call to Action Start ***** -->
+    <!-- ***** Call to Action End ***** -->
+    <!-- ***** Our Classes Start ***** -->
+    <!-- ***** Our Classes End ***** -->
+    <!-- ***** Testimonials Starts ***** -->
+    <!-- ***** Testimonials Ends ***** -->
+    <!-- ***** Contact Us Area Ends ***** -->
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        @*Copyright &copy; 2020 Training Studio
+
+                        - Designed by <a rel="nofollow" href="https://templatemo.com" class="tm-text-link" target="_parent">TemplateMo</a>*@
+                        Gắn Map, và đối tác
+                    </p>
+
+                    <!-- You shall support us a little via PayPal to info@templatemo.com -->
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="~/public/Assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/public/Assets/js/popper.js"></script>
+    <script src="~/public/Assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="~/public/Assets/js/scrollreveal.min.js"></script>
+    <script src="~/public/Assets/js/waypoints.min.js"></script>
+    <script src="~/public/Assets/js/jquery.counterup.min.js"></script>
+    <script src="~/public/Assets/js/imgfix.min.js"></script>
+    <script src="~/public/Assets/js/mixitup.js"></script>
+    <script src="~/public/Assets/js/accordions.js"></script>
+
+    <!-- Global Init -->
+    <script src="~/public/Assets/js/custom.js"></script>
+    <!-- Start of txt.me widget code -->
+    <script src="https://v3.txt.me/livechat/js/wrapper/b1921162-2619-46eb-85ac-9dd36d923316" async></script>
+    <noscript><a href="https://txt.me/reviews/b1921162-2619-46eb-85ac-9dd36d923316" rel="nofollow">Rate New Widget customer support</a>, powered by <a href="https://txt.me" rel="noopener nofollow" target="_blank">txt.me</a></noscript>
+    <!-- End of txt.me widget code -->
+</body>
+</html>
