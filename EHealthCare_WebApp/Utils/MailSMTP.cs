@@ -19,9 +19,9 @@ namespace EHealthCare_WebApp.Utils
 
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("huynhthikimthoa192001@gmail.com", "amnlvikpxihyfcxa");
+                smtp.Credentials = new NetworkCredential("sanggarena1@gmail.com", "nagnrgpindnlzeee");
 
-                mail.From = new MailAddress("huynhthikimthoa192001@gmail.com", "EHealthcare");
+                mail.From = new MailAddress("sanggarena1@gmail.com", "EHealthcare");
                 mail.BodyEncoding = mail.SubjectEncoding = Encoding.UTF8;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
