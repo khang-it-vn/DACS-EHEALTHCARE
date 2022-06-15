@@ -31,6 +31,6 @@ namespace DbEHealthcare.Entities
 
         public virtual ChiTietTuVan ChiTietTuVan { get; set; }
 
-        public bool trangthai { get; set; }
+        public bool? trangthai { get; set; }
     }
 }
