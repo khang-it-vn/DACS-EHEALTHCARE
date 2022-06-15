@@ -30,5 +30,7 @@ namespace DbEHealthcare.Entities
         public virtual BenhNhan BenhNhan { get; set; }
 
         public virtual ChiTietTuVan ChiTietTuVan { get; set; }
+
+        public bool trangthai { get; set; }
     }
 }
