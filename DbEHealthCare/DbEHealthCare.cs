@@ -4,7 +4,7 @@ namespace DbEHealthcare
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using global::DbEHealthcare.Entities;
+    using Entities;
 
     public partial class DbEHealthCare : DbContext
     {
@@ -19,6 +19,7 @@ namespace DbEHealthcare
         public virtual DbSet<BenhVien> BenhViens { get; set; }
         public virtual DbSet<ChiTietTuVan> ChiTietTuVans { get; set; }
         public virtual DbSet<ChuyenKhoa> ChuyenKhoas { get; set; }
+        public virtual DbSet<HoSo> HoSoes { get; set; }
         public virtual DbSet<LichTuVan> LichTuVans { get; set; }
         public virtual DbSet<TrinhDo> TrinhDoes { get; set; }
 
@@ -87,6 +88,18 @@ namespace DbEHealthcare
                 .HasMany(e => e.BacSis)
                 .WithOptional(e => e.BenhVien)
                 .HasForeignKey(e => e.id_bv);
+
+            modelBuilder.Entity<HoSo>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HoSo>()
+                .Property(e => e.tencv)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HoSo>()
+                .Property(e => e.sdt)
+                .IsUnicode(false);
 
             modelBuilder.Entity<LichTuVan>()
                 .Property(e => e.email_BS)

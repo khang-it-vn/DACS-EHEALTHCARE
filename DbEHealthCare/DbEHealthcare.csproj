@@ -58,6 +58,7 @@
     <Compile Include="Entities\ChiTietTuVan.cs" />
     <Compile Include="Entities\ChuyenKhoa.cs" />
     <Compile Include="DbEHealthCare.cs" />
+    <Compile Include="Entities\HoSo.cs" />
     <Compile Include="Entities\LichTuVan.cs" />
     <Compile Include="Entities\TrinhDo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

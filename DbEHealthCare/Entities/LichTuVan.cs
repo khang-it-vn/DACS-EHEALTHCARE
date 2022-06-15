@@ -17,12 +17,13 @@ namespace DbEHealthcare.Entities
         [Column(Order = 1)]
         [StringLength(200)]
         public string email_BS { get; set; }
-        public int? phongtuvan { get; set; }
 
         [StringLength(200)]
         public string email_BN { get; set; }
 
         public int? id_cttv { get; set; }
+
+        public int? phongtuvan { get; set; }
 
         public virtual BacSi BacSi { get; set; }
 
