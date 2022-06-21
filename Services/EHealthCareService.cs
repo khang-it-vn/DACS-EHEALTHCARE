@@ -54,7 +54,7 @@ namespace Services
 
         private IChiTietTuVanRepository chiTietTuVans;
 
-      
+        private IChiTietChuyenKhoaRepository chiTietChuyenKhoas;
 
         private ILichTuVanRepository lichTuVans;
 
@@ -67,6 +67,7 @@ namespace Services
             this.benhNhans = new BenhNhanRepository(dbContext);
             this.chiTietTuVans = new ChiTietTuVanRepository(dbContext);
             this.lichTuVans = new LichTuVanRepository(dbContext);
+            this.chiTietChuyenKhoas = new ChiTietChuyenKhoaRepository(dbContext);
         }
 
         public void AddChiTietTuVan(ChiTietTuVan cttv)
@@ -90,6 +91,11 @@ namespace Services
         public BacSi getBacSiBy(Expression<Func<BacSi,bool>> expression)
         {
             return bacSis.GetBy(expression);
+        }
+
+        public List<ChiTietChuyenKhoa> getChiTietChuyenKhoa(BacSi bs)
+        {
+            return chiTietChuyenKhoas.GetAll().Where(ct => ct.email_BS.CompareTo(bs.email) == 0).ToList();
         }
 
         public List<ChuyenKhoa> getChuyenKhoas()

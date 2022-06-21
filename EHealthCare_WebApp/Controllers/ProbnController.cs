@@ -71,6 +71,10 @@ namespace EHealthCare_WebApp.Controllers
        public ActionResult Home()
         {
             List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            bacsis.ForEach(bs =>
+            {
+                bs._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bs);
+            });
             List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
             ViewData["bacsis"] = bacsis;
             ViewData["chuyenkhoas"] = chuyenkhoas;

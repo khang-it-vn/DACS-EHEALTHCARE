@@ -104,9 +104,9 @@ button:hover{
             }
             for (int i = 0; i < 12 && bacsis.Count > 0; i++)
             {
-                
+
                 DbEHealthcare.Entities.BacSi bs = bacsis[0];
-                <div id="cont-obj" class="@(state ? random_class.ToString() : "") @bs.email" style="@(state ?"display: none" : "")">
+                <div id="cont-obj" class="@(state ? random_class.ToString() : "") @bs.email" style="@(state ? "display: none" : "")">
                     <div id="cont-obj-img">
                         <img src="~/Content/images/@bs.hinhanh">
                     </div>
@@ -114,13 +114,18 @@ button:hover{
                     <div id="cont-obj-info">
                         Bác Sĩ: @bs.hoten
                         <br>
-                        Chuyên Khoa: @bs.ChuyenKhoa.ten_CK
+                        @{ int _tt_ck = bs._ct_chuyenkhoas.Count();}
+                            Chuyên Khoa: @foreach (DbEHealthcare.Entities.ChiTietChuyenKhoa ck in bs._ct_chuyenkhoas)
+                            {
+                                @ck.ChuyenKhoa.ten_CK @(_tt_ck == 1 ? "":", ")
+                                _tt_ck--;
+                            }
                     </div>
                 </div>
                 <script>
                     $(".@bs.email").on("click", function () {
-                        window.location.href = "Regis?email=@bs.email";
-                    })
+                                window.location.href = "Regis?email=@bs.email";
+                            })
                 </script>
                 bacsis.Remove(bs);
             }

@@ -58,5 +58,7 @@ namespace DbEHealthcare.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichTuVan> LichTuVans { get; set; }
+
+        public List<ChiTietChuyenKhoa> _ct_chuyenkhoas = new List<ChiTietChuyenKhoa>();
     }
 }

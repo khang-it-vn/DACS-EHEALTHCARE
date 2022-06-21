@@ -24,5 +24,7 @@ namespace DbEHealthcare.Entities
         public virtual BacSi BacSi { get; set; }
 
         public virtual ChuyenKhoa ChuyenKhoa { get; set; }
+
+        
     }
 }
