@@ -1,0 +1,739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\nguye\Desktop\published</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="App_Data/Data_Process/room.txt">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>06/15/2022 08:27:00</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="bin/DbEHealthCare.dll">
+      <publishTime>06/16/2022 12:32:06</publishTime>
+    </File>
+    <File Include="bin/EHealthCare_WebApp.dll">
+      <publishTime>06/16/2022 12:32:12</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>06/15/2022 08:27:00</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>06/15/2022 08:27:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Configuration.Abstractions.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Configuration.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Configuration.FileExtensions.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Configuration.Json.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.FileProviders.Abstractions.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.FileProviders.Physical.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.FileSystemGlobbing.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Primitives.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Win32.Primitives.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/Services.dll">
+      <publishTime>06/16/2022 12:32:07</publishTime>
+    </File>
+    <File Include="bin/System.AppContext.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Console.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Tracing.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.Calendars.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.IO.Compression.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.IO.Compression.ZipFile.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.IO.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.Primitives.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Linq.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Expressions.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Net.Sockets.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Extensions.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.InteropServices.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Encoding.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Primitives.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>06/15/2022 08:27:02</publishTime>
+    </File>
+    <File Include="bin/System.Text.RegularExpressions.dll">
+      <publishTime>06/15/2022 08:27:03</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>06/15/2022 08:27:01</publishTime>
+    </File>
+    <File Include="bin/System.Xml.ReaderWriter.dll">
+      <publishTime>06/15/2022 08:27:03</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>06/15/2022 08:27:03</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/detail.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/history.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/home.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/login.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/owl.carousel.min.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/probn.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/probs.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/css/regis.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/add %282%29.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar20220519T223042.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar20220520T202030.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar20220520T210532.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar20220520T211504.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar20220520T211925.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/avartar20220520T212554.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/bg_1.jpg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/bruno.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/bs.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/calendar.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/contact.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/doan.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/dung.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/gym-video.mp4">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/gyu.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/histories.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/history.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/home.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest20220519T215144.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest20220520T201546.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest20220520T205159.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest20220520T205611.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest20220520T211022.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/imgtest20220520T212338.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/jean.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/khari.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/lan.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/liem.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/loi.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/morey.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/mykha.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/nhan.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/nhat.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/philip.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/profile.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/quyet.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/selina.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/sergi.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/sinh.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/smith.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/tat.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/ton.jpeg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/tuvan.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/images/undraw_file_sync_ot38.svg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/js/load-image.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="dbconnect.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="index.html">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/bootstrap.min.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/font-awesome.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/jumbotron.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/materialize.min.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/profile.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/style.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/css/templatemo-training-studio.css">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/images/avartar.png">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="public/Assets/images/gym-video.mp4">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/images/image_background.jpg">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/images/img.png">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/images/other.jpg">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/accordions.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/app.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/bootstrap.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/custom.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/imgfix.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/jquery-2.1.0.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/jquery.counterup.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/jquery.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/mixitup.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/popper.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/scrollreveal.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="public/Assets/js/waypoints.min.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.22.9-build00167.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="server.js">
+      <publishTime>06/15/2022 08:26:57</publishTime>
+    </File>
+    <File Include="Views/Account/ConfirmEmail.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginFailure.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPassword.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPassword.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/SendCode.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/VerifyCode.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Login/Index.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Manage/AddPhoneNumber.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Manage/ChangePassword.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Manage/Index.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Manage/ManageLogins.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Manage/SetPassword.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Books.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Detail.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Filter.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/FilterHistory.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/FilterName.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/History.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Home.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Index.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Profile.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probn/Regis.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probs/FilterHistory.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probs/FilterMission.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probs/History.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probs/Index.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probs/Manage.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Probs/Mission.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Shared/Lockout.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_bn.cshtml">
+      <publishTime>06/16/2022 12:10:12</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_bs.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>06/15/2022 08:26:56</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/16/2022 12:32:13</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

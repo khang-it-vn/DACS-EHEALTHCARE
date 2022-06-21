@@ -1,6 +1,8 @@
 ﻿using DbEHealthcare.Entities;
 using EHealthCare_WebApp.Models;
 using EHealthCare_WebApp.Utils;
+using MoMo;
+using Newtonsoft.Json.Linq;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -98,6 +100,68 @@ namespace EHealthCare_WebApp.Controllers
         {
             try
             {
+                // doan nay xu ly thanh toan
+                string endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+                string partnerCode = "MOMO5RGX20191128";
+                string accessKey = "M8brj9K6E22vXoDB";
+                string serectkey = "nqQiVSgDMy809JoPF6OzP5OdBUB550Y4";
+                string orderInfo = "test thanh toan";
+                string redirectUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
+                string ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
+                string requestType = "captureWallet";
+
+                string amount = "20000";
+                string orderId = Guid.NewGuid().ToString();
+                string requestId = Guid.NewGuid().ToString();
+                string extraData = "";
+
+                //Before sign HMAC SHA256 signature
+                string rawHash = "accessKey=" + accessKey +
+                    "&amount=" + amount +
+                    "&extraData=" + extraData +
+                    "&ipnUrl=" + ipnUrl +
+                    "&orderId=" + orderId +
+                    "&orderInfo=" + orderInfo +
+                    "&partnerCode=" + partnerCode +
+                    "&redirectUrl=" + redirectUrl +
+                    "&requestId=" + requestId +
+                    "&requestType=" + requestType
+                    ;
+
+             
+
+                MoMoSecurity crypto = new MoMoSecurity();
+                //sign signature SHA256
+                string signature = crypto.signSHA256(rawHash, serectkey);
+              
+
+                //build body json request
+                JObject message = new JObject
+            {
+                { "partnerCode", partnerCode },
+                { "partnerName", "Test" },
+                { "storeId", "MomoTestStore" },
+                { "requestId", requestId },
+                { "amount", amount },
+                { "orderId", orderId },
+                { "orderInfo", orderInfo },
+                { "redirectUrl", redirectUrl },
+                { "ipnUrl", ipnUrl },
+                { "lang", "en" },
+                { "extraData", extraData },
+                { "requestType", requestType },
+                { "signature", signature }
+
+            };
+               
+                string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+                JObject jmessage = JObject.Parse(responseFromMomo);
+                
+                System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
+
+                //
+
                 DateTime _ntv = DateTime.Parse(ngay + " " + gio);
 
                 String email_BN = (String)Session["email"];
@@ -116,7 +180,11 @@ namespace EHealthCare_WebApp.Controllers
                 EHealthCareService.Instance.Edit(ltv);
                 EHealthCareService.Instance.Save();
 
-                string body = "<h1>Hoàn tất mail<h1>";
+                string FilePath = Path.Combine(Server.MapPath("~/Utils/TemplateMail"), "MailDangKyThanhCong.html");
+                StreamReader str = new StreamReader(FilePath);
+                string MailText = str.ReadToEnd();
+                str.Close();
+                string body = MailText;
                 string subject = "Thông Báo Xác Nhận Đăng Ký Lịch Tư Vấn Khám Bệnh";
 
                 MailSMTP.Send(body, subject, email_BN);
@@ -132,11 +200,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult Filter(int chuyenkhoa)
         {
-            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
-            List<BacSi> bacsis_filter = bacsis.Where(bs => bs.ma_CK == chuyenkhoa).ToList();
-            List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
-            ViewData["bacsis"] = bacsis_filter;
-            ViewData["chuyenkhoas"] = chuyenkhoas;
+            //List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            //List<BacSi> bacsis_filter = bacsis.Where(bs => bs.ChiTietChuyenKhoas.m == chuyenkhoa).ToList();
+            //List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
+            //ViewData["bacsis"] = bacsis_filter;
+            //ViewData["chuyenkhoas"] = chuyenkhoas;
             return View();
         }
 

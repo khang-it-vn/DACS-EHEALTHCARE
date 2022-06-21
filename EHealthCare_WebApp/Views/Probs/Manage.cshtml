@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout_bs.cshtml";
     List<DbEHealthcare.Entities.LichTuVan> lichtuvans = ViewData["lichtuvans"] as List<DbEHealthcare.Entities.LichTuVan>;
     int stt = 0;
+    int datlich = 0;
 }
 
 <script>
@@ -11,6 +12,28 @@
     function closeForm() {
         $(".offonclick").remove();
     }
+    function closeDoiLich() {
+        $(".doilich-class").remove();
+    }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+    var dob = formatDate("@DateTime.Now");
+    $(document).ready(function () {
+        var element = document.getElementById("giohientai");
+        element.value = dob;
+    });
 
 </script>
 
@@ -22,7 +45,6 @@
         </div>
         <div class="head-introduce" style="font-size: 17px; color: black;">
             Họ tên: @Model.BacSi.hoten | Giới Tính : @Model.BacSi.gioitinh<br>
-            Chuyên khoa: @Model.BacSi.ChuyenKhoa.ten_CK <br>
             Trình độ chuyên môn: @Model.BacSi.tdcm <br />
             Bệnh viện trực thuộc: @Model.BacSi.dc_bv_tt <br />
             Kinh nghiệm: @Model.BacSi.kinhnghiem
@@ -57,6 +79,7 @@
             DateTime dt = DateTime.Now;
             for (int i = 0; i < 7; i++)
             {
+                datlich++;
                 <div class="content-body-1">
                     <div class="content-body-2 form-dayofweek" style="background-color: white; border: 1px solid black; background-color: darkslategrey; color: white;">
                         <input name="hour" value="@dt.ToShortDateString()" readonly size="5">
@@ -70,9 +93,22 @@
                             {
                                 if (ltv_find.email_BN != null)
                                 {
-                                    <div class="content-body-2 form-dayofweek" style="background-color: deepskyblue;" onclick="loadMission()">
+                                    <div class="content-body-2 form-dayofweek @(datlich)dl" style="background-color: deepskyblue;">
                                         <input name="hour" value="@hour.Hour" readonly size="5" style="display: none;">
                                     </div>
+                                    <script>
+                                        $(".@(datlich)dl").on("click",function(){
+                                            var regis_clone = $("#doilich").clone();
+                                            regis_clone.show();
+                                            regis_clone.addClass("doilich-class");
+                                            
+                                            regis_clone.find("input[type=text][name=email]").val("@Model.BacSi.email");
+                                            regis_clone.find("input[type=text][name=ngaycu]").val("@hour.ToShortDateString()");
+                                            regis_clone.find("input[type=text][name=giocu]").val("@hour.ToShortTimeString()");
+                                            $("#content").append(regis_clone);
+                                        })
+
+                                    </script>
                                 }
                                 else
                                 {
@@ -143,7 +179,53 @@
         </form>
     </div>
 
+<div id="doilich" style="display: none">
+    <form action="ReplaceCalender" method="get">
+        <table>
+            <tr>
+                <td><Label>Ngày hiện tại:</Label></td>
+                <td><input type="text" name="ngaycu" readonly></td>
+            </tr>
+            <tr>
+                <td><Label>Giờ hiện tại:</Label></td>
+                <td><input type="text" name="giocu" readonly></td>
+            </tr>
+            
+            <tr>
+                <td><Label style="display: none">Bác Sĩ:</Label></td>
+                <td><input type="text" name="email" style="display: none"></td>
+            </tr>
+            <tr>
+                <td><Label>Ngày dời:</Label></td>
+                <td><input id="giohientai" type="date" name="ngay"></td>
+            </tr>
+            <tr>
+                <td><Label>Giờ dời:</Label></td>
+                <td><input type="number" min="7" max="16" name="gio" value="7"></td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Dời lịch" style="float: left">
+        <div onclick="closeDoiLich()" style="border: 1px solid red;
+                                                border-radius: 10px;
+                                                background-color: orangered;
+                                                color: white;
+                                                width: 50px; float: left; margin-left: 170px; height: 27px; text-align: center;
+                                                font-size: 18px; ">Hủy</div>
+    </form>
+</div>
 <style>
+    #doilich{
+        position: absolute;
+        width: 400px;
+        height: 300px;
+        background-color: aquamarine;
+        left: 40%;
+        top: 10%;
+        border-radius: 10px;
+        padding: 10px;
+
+    }
     .content-body-title {
         width: 50px;
         float: left;

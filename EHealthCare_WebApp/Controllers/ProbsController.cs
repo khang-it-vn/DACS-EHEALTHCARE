@@ -255,5 +255,33 @@ namespace EHealthCare_WebApp.Controllers
             EHealthCareService.Instance.Save();
             return RedirectToAction("Mission");
         }
+
+        public ActionResult ReplaceCalender(string ngaycu, string giocu,string email,DateTime ngay,int gio)
+        {
+            DateTime _ntv = DateTime.Parse(ngaycu + " " + giocu);
+            List<LichTuVan> ltvs = EHealthCareService.Instance.getLichTuVans();
+
+            LichTuVan ltv = ltvs.First(l => l.ntv == _ntv && l.email_BS.CompareTo(email.ToLower().Trim()) == 0);
+            if(ltv != null)
+            {
+                DateTime timenew = DateTime.Parse(ngay.ToShortDateString() + " " + gio + ":00:00");
+                LichTuVan ltv_new = new LichTuVan();
+                ltv_new.ntv = timenew;
+                ltv_new.email_BN = ltv.email_BN;
+                ltv_new.email_BS = ltv.email_BS;
+                ltv_new.id_cttv = ltv.id_cttv;
+                ltv_new.phongtuvan = ltv.phongtuvan;
+                ltv_new.trangthai = ltv.trangthai;
+                
+                EHealthCareService.Instance.Add(ltv_new);
+                EHealthCareService.Instance.Save();
+
+                EHealthCareService.Instance.Delete(ltv);
+                EHealthCareService.Instance.Save();
+                return RedirectToAction("Manage");
+            }
+
+            return RedirectToAction("Manage");
+        }
     }
 }
