@@ -12,6 +12,7 @@ namespace DbEHealthcare.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BacSi()
         {
+            ChiTietChuyenKhoas = new HashSet<ChiTietChuyenKhoa>();
             LichTuVans = new HashSet<LichTuVan>();
         }
 
@@ -42,8 +43,6 @@ namespace DbEHealthcare.Entities
 
         public bool? gioitinh { get; set; }
 
-        public int? ma_CK { get; set; }
-
         [StringLength(6)]
         public string id_bv { get; set; }
 
@@ -52,9 +51,10 @@ namespace DbEHealthcare.Entities
 
         public virtual BenhVien BenhVien { get; set; }
 
-        public virtual ChuyenKhoa ChuyenKhoa { get; set; }
-
         public virtual TrinhDo TrinhDo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietChuyenKhoa> ChiTietChuyenKhoas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichTuVan> LichTuVans { get; set; }

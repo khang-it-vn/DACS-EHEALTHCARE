@@ -12,7 +12,7 @@ namespace DbEHealthcare.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChuyenKhoa()
         {
-            BacSis = new HashSet<BacSi>();
+            ChiTietChuyenKhoas = new HashSet<ChiTietChuyenKhoa>();
         }
 
         [Key]
@@ -27,6 +27,6 @@ namespace DbEHealthcare.Entities
         public string mota_CK { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BacSi> BacSis { get; set; }
+        public virtual ICollection<ChiTietChuyenKhoa> ChiTietChuyenKhoas { get; set; }
     }
 }

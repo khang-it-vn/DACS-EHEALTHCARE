@@ -17,6 +17,7 @@ namespace DbEHealthcare
         public virtual DbSet<BacSi> BacSis { get; set; }
         public virtual DbSet<BenhNhan> BenhNhans { get; set; }
         public virtual DbSet<BenhVien> BenhViens { get; set; }
+        public virtual DbSet<ChiTietChuyenKhoa> ChiTietChuyenKhoas { get; set; }
         public virtual DbSet<ChiTietTuVan> ChiTietTuVans { get; set; }
         public virtual DbSet<ChuyenKhoa> ChuyenKhoas { get; set; }
         public virtual DbSet<HoSo> HoSoes { get; set; }
@@ -54,6 +55,12 @@ namespace DbEHealthcare
                 .IsUnicode(false);
 
             modelBuilder.Entity<BacSi>()
+                .HasMany(e => e.ChiTietChuyenKhoas)
+                .WithRequired(e => e.BacSi)
+                .HasForeignKey(e => e.email_BS)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BacSi>()
                 .HasMany(e => e.LichTuVans)
                 .WithRequired(e => e.BacSi)
                 .HasForeignKey(e => e.email_BS)
@@ -88,6 +95,15 @@ namespace DbEHealthcare
                 .HasMany(e => e.BacSis)
                 .WithOptional(e => e.BenhVien)
                 .HasForeignKey(e => e.id_bv);
+
+            modelBuilder.Entity<ChiTietChuyenKhoa>()
+                .Property(e => e.email_BS)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ChuyenKhoa>()
+                .HasMany(e => e.ChiTietChuyenKhoas)
+                .WithRequired(e => e.ChuyenKhoa)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<HoSo>()
                 .Property(e => e.email)

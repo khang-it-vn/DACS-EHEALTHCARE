@@ -149,9 +149,24 @@ namespace Services
 
         }
 
+        public void Add(BenhNhan bn)
+        {
+            benhNhans.Add(bn);
+        }
+
         public void UpdateCTTV(ChiTietTuVan cttv)
         {
             chiTietTuVans.Edit(cttv);
+        }
+
+        public void Delete(LichTuVan ltv)
+        {
+            lichTuVans.Delete(ltv);
+        }
+        public bool MailExists(BenhNhan bn)
+        {
+            return benhNhans.FindBy(b => b.email.CompareTo(bn.email.ToLower()) == 0);
+
         }
     }
 }

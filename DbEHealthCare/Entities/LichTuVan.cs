@@ -25,12 +25,12 @@ namespace DbEHealthcare.Entities
 
         public int? phongtuvan { get; set; }
 
+        public bool? trangthai { get; set; }
+
         public virtual BacSi BacSi { get; set; }
 
         public virtual BenhNhan BenhNhan { get; set; }
 
         public virtual ChiTietTuVan ChiTietTuVan { get; set; }
-
-        public bool? trangthai { get; set; }
     }
 }

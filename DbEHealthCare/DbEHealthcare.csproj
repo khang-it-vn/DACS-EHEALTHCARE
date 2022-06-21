@@ -55,6 +55,7 @@
     <Compile Include="Entities\BacSi.cs" />
     <Compile Include="Entities\BenhNhan.cs" />
     <Compile Include="Entities\BenhVien.cs" />
+    <Compile Include="Entities\ChiTietChuyenKhoa.cs" />
     <Compile Include="Entities\ChiTietTuVan.cs" />
     <Compile Include="Entities\ChuyenKhoa.cs" />
     <Compile Include="DbEHealthCare.cs" />
