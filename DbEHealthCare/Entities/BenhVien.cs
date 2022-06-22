@@ -21,6 +21,12 @@ namespace DbEHealthcare.Entities
         [StringLength(100)]
         public string ten_bv { get; set; }
 
+        [StringLength(200)]
+        public string diachi_bv { get; set; }
+
+        [StringLength(200)]
+        public string httc { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BacSi> BacSis { get; set; }
     }

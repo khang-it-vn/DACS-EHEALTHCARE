@@ -204,11 +204,22 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult Filter(int chuyenkhoa)
         {
-            //List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
-            //List<BacSi> bacsis_filter = bacsis.Where(bs => bs.ChiTietChuyenKhoas.m == chuyenkhoa).ToList();
-            //List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
-            //ViewData["bacsis"] = bacsis_filter;
-            //ViewData["chuyenkhoas"] = chuyenkhoas;
+            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            List<BacSi> bacsis_filter = new List<BacSi>();
+            List<ChiTietChuyenKhoa> _ct_chuyenkhoa = EHealthCareService.Instance.getChiTietChuyenKhoa();
+            _ct_chuyenkhoa.ForEach( ct => 
+            {
+                if(ct.ma_CK == chuyenkhoa)
+                {
+                    BacSi _bs = bacsis.SingleOrDefault(bs => bs.email.CompareTo(ct.email_BS) == 0);
+
+                    bacsis_filter.Add(_bs);
+                }
+            });
+
+            List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
+            ViewData["bacsis"] = bacsis_filter;
+            ViewData["chuyenkhoas"] = chuyenkhoas;
             return View();
         }
 
@@ -218,6 +229,12 @@ namespace EHealthCare_WebApp.Controllers
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
             List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
             List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => DateTime.Compare(DateTime.Now, ltv.ntv) > 0 && String.Compare(ltv.email_BN, email) == 0).ToList();
+            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            bacsis.ForEach(bs =>
+            {
+                bs._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bs);
+            });
+            ViewData["bacsis"] = bacsis;
             ViewData["lichtuvans"] = lichtuvanOfSession;
 
             List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
@@ -255,6 +272,13 @@ namespace EHealthCare_WebApp.Controllers
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
             List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
             List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => ltv.ntv.Day == date.Day && ltv.ntv.Month == date.Month && ltv.ntv.Year == date.Year && String.Compare(ltv.email_BN, email) == 0).ToList();
+            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            bacsis.ForEach(bs =>
+            {
+                bs._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bs);
+            });
+            ViewData["bacsis"] = bacsis;
+
             ViewData["lichtuvans"] = lichtuvanOfSession;
 
             List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();

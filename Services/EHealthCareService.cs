@@ -174,5 +174,10 @@ namespace Services
             return benhNhans.FindBy(b => b.email.CompareTo(bn.email.ToLower()) == 0);
 
         }
+
+        public List<ChiTietChuyenKhoa> getChiTietChuyenKhoa()
+        {
+            return chiTietChuyenKhoas.GetAll().ToList();
+        }
     }
 }

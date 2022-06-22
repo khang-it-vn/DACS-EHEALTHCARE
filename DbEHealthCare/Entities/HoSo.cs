@@ -16,7 +16,7 @@ namespace DbEHealthcare.Entities
         [StringLength(30)]
         public string tencv { get; set; }
 
-        [StringLength(10)]
-        public string sdt { get; set; }
+        [StringLength(50)]
+        public string ten_ung_vien { get; set; }
     }
 }
