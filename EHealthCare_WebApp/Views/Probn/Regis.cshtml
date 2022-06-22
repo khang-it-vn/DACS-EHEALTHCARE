@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model DbEHealthcare.Entities.BacSi
 @{
     ViewBag.Title = "Regis";
     Layout = "~/Views/Shared/_Layout_bn.cshtml";
@@ -6,7 +6,7 @@
     int sp = 1;
 }
 <script>
-    var email_bs = "@Model.BacSi.email";
+    var email_bs = "@Model.email";
     function closeForm() {
         document.getElementsByClassName("offonclick")[0].parentNode.removeChild(document.getElementsByClassName("offonclick")[0]);
     }
@@ -16,12 +16,13 @@
 <div id="content">
     <div id="content-head" style="background-color: white;">
         <div class="head-img">
-            <img src="~/Content/images/@Model.BacSi.hinhanh">
+            <img src="~/Content/images/@Model.hinhanh"> 
+            <div><a href="@(EHealthCare_WebApp.Utils.Domain._domain)Probn/Info?email=@Model.email">Xem thông tin bác sĩ</a></div>
         </div>
         <div class="head-introduce" style="font-size: 17px; color: black;">
-            Họ tên: @Model.BacSi.hoten | Giới Tính : @(Model.BacSi.gioitinh ? "Nam":"Nữ")<br>
-            Bệnh viện trực thuộc: @Model.BacSi.BenhVien.ten_bv <br />
-            Kinh nghiệm: @Model.BacSi.kinhnghiem
+            Họ tên: @Model.hoten | Giới Tính : @(Model.gioitinh == true ? "Nam":"Nữ")<br>
+            Bệnh viện trực thuộc: @Model.BenhVien.ten_bv <br />
+            Kinh nghiệm: @Model.kinhnghiem
 
         </div>
         <div class="head-helper">
@@ -51,6 +52,7 @@
 
         @{
             DateTime dt = DateTime.Now;
+            dt = dt.AddDays(1);
             for (int i = 0; i < 7; i++)
             {
                 <div class="content-body-1">
@@ -58,14 +60,14 @@
                         <input name="hour" value="@dt.ToShortDateString()" readonly size="5">
                     </div>
                     @{
-                        DateTime hour = DateTime.Parse(dt.ToShortDateString() + " 07:00:00");
-                        for (int j = 0; j < 10; j++)
-                        {
-                            DbEHealthcare.Entities.LichTuVan ltv_find = lichtuvans.Find(l => l.ntv == hour);
-                            if (ltv_find != null)
-                            {
-                                if (ltv_find.email_BN != null)
-                                {
+                                    DateTime hour = DateTime.Parse(dt.ToShortDateString() + " 07:00:00");
+                                    for (int j = 0; j < 10; j++)
+                                    {
+                                        DbEHealthcare.Entities.LichTuVan ltv_find = lichtuvans.Find(l => l.ntv == hour);
+                                        if (ltv_find != null)
+                                        {
+                                            if (ltv_find.email_BN != null)
+                                            {
                                     <div class="content-body-2 form-dayofweek" style="background-color: deepskyblue;">
                                         <input name="hour" value="@hour.Hour" readonly size="5" style="display: none;">
                                     </div>
@@ -80,17 +82,17 @@
 
                                    <script>
                                         $(".@hour.Hour@sp" ).on("click",function(){
-                                            var regis_clone = $("#inforegis").clone();
-                                            regis_clone.addClass("offonclick");
-                                            regis_clone.show();
-                                            regis_clone.find("input[type=text][name=email]").val("@Model.BacSi.email");
-                                            regis_clone.find("input[type=text][name=hoten]").val("@Model.BacSi.hoten");
-                                            regis_clone.find("input[type=text][name=ngay]").val("@hour.ToShortDateString()");
-                                            regis_clone.find("input[type=text][name=gio]").val("@hour.ToShortTimeString()");
+                                var regis_clone = $("#inforegis").clone();
+                                regis_clone.addClass("offonclick");
+                                regis_clone.show();
+                                regis_clone.find("input[type=text][name=email]").val("@Model.email");
+                                regis_clone.find("input[type=text][name=hoten]").val("@Model.hoten");
+                                regis_clone.find("input[type=text][name=ngay]").val("@hour.ToShortDateString()");
+                                regis_clone.find("input[type=text][name=gio]").val("@hour.ToShortTimeString()");
 
 
                                             $("#content").append(regis_clone);
-                                        })
+                            })
 
                                     </script>
                                 }

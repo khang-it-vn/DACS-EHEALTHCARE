@@ -365,6 +365,7 @@
     <Content Include="Content\css\detail.css" />
     <Content Include="Content\css\history.css" />
     <Content Include="Content\css\home.css" />
+    <Content Include="Content\css\info_bs.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\probn.css" />
@@ -531,6 +532,7 @@
     <Content Include="Views\Login\DangKy.cshtml" />
     <Content Include="Views\Login\NhapMailForgotPass.cshtml" />
     <Content Include="Views\Login\ThayDoiMatKhau.cshtml" />
+    <Content Include="Views\Probn\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\attachment\" />

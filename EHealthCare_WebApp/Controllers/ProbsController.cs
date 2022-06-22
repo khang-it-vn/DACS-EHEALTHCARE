@@ -283,5 +283,27 @@ namespace EHealthCare_WebApp.Controllers
 
             return RedirectToAction("Manage");
         }
+
+        public ActionResult HuyLich(string ngay, string gio)
+        {
+            string _s_ntv = ngay +  " " + gio;
+
+            DateTime _d_ntv = DateTime.Parse(_s_ntv);
+
+            string email_bs = Session["email"] as string;
+
+            BacSi bacsi = EHealthCareService.Instance.getBacSiBy( b => b.email.CompareTo(email_bs) == 0);
+
+            LichTuVan _ltv = EHealthCareService.Instance.getLichTuVanBy(bacsi).SingleOrDefault(l => DateTime.Compare(l.ntv,_d_ntv) == 0);
+
+            ChiTietTuVan ct = _ltv.ChiTietTuVan;
+            EHealthCareService.Instance.Delete(ct);
+            EHealthCareService.Instance.Save();
+
+            EHealthCareService.Instance.Delete(_ltv);
+            EHealthCareService.Instance.Save();
+
+            return RedirectToAction("Manage");
+        }
     }
 }

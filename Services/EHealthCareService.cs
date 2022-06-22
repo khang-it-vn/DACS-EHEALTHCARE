@@ -179,5 +179,10 @@ namespace Services
         {
             return chiTietChuyenKhoas.GetAll().ToList();
         }
+
+        public void Delete(ChiTietTuVan ct)
+        {
+            chiTietTuVans.Delete(ct);
+        }
     }
 }
