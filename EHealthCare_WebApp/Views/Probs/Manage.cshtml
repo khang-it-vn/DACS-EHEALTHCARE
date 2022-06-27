@@ -16,6 +16,10 @@
         $(".doilich-class").remove();
     }
 
+    function closeHuyLich()
+    {
+        $(".closehuylich").remove();
+    }
     function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -77,9 +81,10 @@
 
         @{
             DateTime dt = DateTime.Now;
+            dt = dt.AddDays(1);
             for (int i = 0; i < 7; i++)
             {
-                datlich++;
+                            datlich++;
                 <div class="content-body-1">
                     <div class="content-body-2 form-dayofweek" style="background-color: white; border: 1px solid black; background-color: darkslategrey; color: white;">
                         <input name="hour" value="@dt.ToShortDateString()" readonly size="5">
@@ -98,25 +103,34 @@
                                     </div>
                                     <script>
                                         $(".@(datlich)dl").on("click",function(){
-                                            var regis_clone = $("#doilich").clone();
-                                            regis_clone.show();
-                                            regis_clone.addClass("doilich-class");
-                                            
-                                            regis_clone.find("input[type=text][name=email]").val("@Model.BacSi.email");
-                                            regis_clone.find("input[type=text][name=ngaycu]").val("@hour.ToShortDateString()");
-                                            regis_clone.find("input[type=text][name=giocu]").val("@hour.ToShortTimeString()");
+                        var regis_clone = $("#doilich").clone();
+                        regis_clone.show();
+                        regis_clone.addClass("doilich-class");
+
+                        regis_clone.find("input[type=text][name=email]").val("@Model.BacSi.email");
+                        regis_clone.find("input[type=text][name=ngaycu]").val("@hour.ToShortDateString()");
+                        regis_clone.find("input[type=text][name=giocu]").val("@hour.ToShortTimeString()");
                                             $("#content").append(regis_clone);
-                                        })
+                    })
 
                                     </script>
                                 }
                                 else
                                 {
-                                    <div class="content-body-2 form-dayofweek @hour.Hour"
+                                    <div class="content-body-2 form-dayofweek @hour.Hour @("huy"+hour.Hour +""+ stt)"
                                          style="background-color: white;">
                                         <input name="hour" value="@hour.Hour" readonly size="5" style="display: none;">
-
                                     </div>   
+                                    <script>
+                                        $(".@("huy"+hour.Hour +""+ stt)").on("click", function () {
+                                            var regis_clone = $("#huylich").clone();
+                                            regis_clone.addClass("closehuylich");
+                                            regis_clone.show();
+                                            regis_clone.find("input[type=text][name=ngay]").val("@hour.ToShortDateString()");
+                                            regis_clone.find("input[type=text][name=gio]").val("@hour.ToShortTimeString()");
+                                            $("#content").append(regis_clone);
+                                        })
+                                    </script>
                                 }
                             }
                             else
@@ -135,7 +149,7 @@
 
 
                                             $("#content").append(regis_clone);
-                                        })
+            })
 
                                 </script>
                             }
@@ -214,7 +228,41 @@
                                                 font-size: 18px; ">Hủy</div>
     </form>
 </div>
+
+<div id="huylich" style="display: none;">
+    <form action="HuyLich" method="get">
+        <table>
+            <tr>
+                <td><Label>Ngày:</Label></td>
+                <td><input type="text" name="ngay" readonly></td>
+            </tr>
+            <tr>
+                <td><Label>Giờ:</Label></td>
+                <td><input type="text" name="gio" readonly></td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Xóa Lịch" style="float: left">
+        <div onclick="closeHuyLich()" style="border: 1px solid red;
+                                                border-radius: 10px;
+                                                background-color: orangered;
+                                                color: white;
+                                                width: 50px; float: left; margin-left: 170px; height: 27px; text-align: center;
+                                                font-size: 18px; ">Hủy</div>
+    </form>
+</div>
 <style>
+    #huylich{
+        position: absolute;
+        width: 400px;
+        height: 200px;
+        background-color: aquamarine;
+        left: 40%;
+        top: 20%;
+        border-radius: 10px;
+        padding: 10px;
+
+    }
     #doilich{
         position: absolute;
         width: 400px;

@@ -18,15 +18,24 @@ namespace EHealthCare_WebApp.Controllers
 {
     public class ProbnController : Controller
     {
+        public bool check_session()
+        {
+            string email = Session["email"] as string;
+            if (email != null)
+                return true;
+            return false;
+        }
         private string emailbs = "";
         // GET: Probn
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
 
         public ActionResult Profile()
         {
+            bool exists_session = check_session();
+            if(!exists_session)
+            {
+                return RedirectToAction("Index","Login");
+            }
             string email = Session["email"] as string;
             BenhNhan bn = EHealthCareService.Instance.getBenhNhan(b => b.email == email );
             return View(bn);
@@ -34,7 +43,11 @@ namespace EHealthCare_WebApp.Controllers
         [HttpPost]
         public ActionResult Update(String hoten, DateTime ntns, bool gioitinh, string dc, string sdt, HttpPostedFileBase hinhanh)
         {
-
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             string mail = Session["email"] as string;
 
             BenhNhan bn = EHealthCareService.Instance.getBenhNhan(b => b.email == mail);
@@ -70,7 +83,16 @@ namespace EHealthCare_WebApp.Controllers
 
        public ActionResult Home()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            bacsis.ForEach(bs =>
+            {
+                bs._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bs);
+            });
             List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
             ViewData["bacsis"] = bacsis;
             ViewData["chuyenkhoas"] = chuyenkhoas;
@@ -79,6 +101,11 @@ namespace EHealthCare_WebApp.Controllers
         }
         public ActionResult Regis(String email)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (email != null)
             {
                 this.emailbs = email;
@@ -89,15 +116,14 @@ namespace EHealthCare_WebApp.Controllers
             }
             BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email == this.emailbs);
             List<LichTuVan> lichtuvan = EHealthCareService.Instance.getLichTuVanBy(bs);
-            dynamic model_bs_ltv = new ExpandoObject();
-            model_bs_ltv.BacSi = bs;
-            
+
             ViewData["LichTuVans"] = lichtuvan;
-            return View(model_bs_ltv);
+            return View(bs);
         }
 
         public ActionResult Accept(String email, String ngay, String gio)
         {
+
             try
             {
                 // doan nay xu ly thanh toan
@@ -200,20 +226,47 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult Filter(int chuyenkhoa)
         {
-            //List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
-            //List<BacSi> bacsis_filter = bacsis.Where(bs => bs.ChiTietChuyenKhoas.m == chuyenkhoa).ToList();
-            //List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
-            //ViewData["bacsis"] = bacsis_filter;
-            //ViewData["chuyenkhoas"] = chuyenkhoas;
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            List<BacSi> bacsis_filter = new List<BacSi>();
+            List<ChiTietChuyenKhoa> _ct_chuyenkhoa = EHealthCareService.Instance.getChiTietChuyenKhoa();
+            _ct_chuyenkhoa.ForEach( ct => 
+            {
+                if(ct.ma_CK == chuyenkhoa)
+                {
+                    BacSi _bs = bacsis.SingleOrDefault(bs => bs.email.CompareTo(ct.email_BS) == 0);
+
+                    bacsis_filter.Add(_bs);
+                }
+            });
+
+            List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
+            ViewData["bacsis"] = bacsis_filter;
+            ViewData["chuyenkhoas"] = chuyenkhoas;
             return View();
         }
 
         public ActionResult History()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             String email = Session["email"] as String;
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
             List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
             List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => DateTime.Compare(DateTime.Now, ltv.ntv) > 0 && String.Compare(ltv.email_BN, email) == 0).ToList();
+            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            bacsis.ForEach(bs =>
+            {
+                bs._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bs);
+            });
+            ViewData["bacsis"] = bacsis;
             ViewData["lichtuvans"] = lichtuvanOfSession;
 
             List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
@@ -243,7 +296,12 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult FilterHistory(DateTime date)
         {
-            if(date > DateTime.Now)
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (date > DateTime.Now)
             {
                 return RedirectToAction("History");
             }
@@ -251,6 +309,13 @@ namespace EHealthCare_WebApp.Controllers
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
             List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
             List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => ltv.ntv.Day == date.Day && ltv.ntv.Month == date.Month && ltv.ntv.Year == date.Year && String.Compare(ltv.email_BN, email) == 0).ToList();
+            List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
+            bacsis.ForEach(bs =>
+            {
+                bs._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bs);
+            });
+            ViewData["bacsis"] = bacsis;
+
             ViewData["lichtuvans"] = lichtuvanOfSession;
 
             List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
@@ -279,6 +344,11 @@ namespace EHealthCare_WebApp.Controllers
         }
         public ActionResult Detail(int id)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ChiTietTuVan cttv = EHealthCareService.Instance.getChiTietTuVan(id);
             ViewData["cttv"] = cttv;
             return View();
@@ -286,6 +356,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult FilterName(string hoten)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
             List<BacSi> bacsis_filter = bacsis.Where(bs => bs.hoten.ToLower().IndexOf(hoten.ToLower()) != -1).ToList();
             List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
@@ -296,10 +371,16 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult Books()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             String email = Session["email"] as String;
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
             List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
-            List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv =>  ltv.ntv > DateTime.Now && String.Compare(ltv.email_BN, email) == 0).ToList();
+            DateTime current_time = DateTime.Parse(DateTime.Now.ToShortDateString() + " 00:00:00");
+            List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv =>  ltv.ntv >= current_time && String.Compare(ltv.email_BN, email) == 0).ToList();
             ViewData["lichtuvans"] = lichtuvanOfSession;
 
             List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
@@ -325,6 +406,23 @@ namespace EHealthCare_WebApp.Controllers
 
             ViewData["chitiettuvans"] = chitietlichtuvan_json;
             return View();
+        }
+
+        public ActionResult Info(string email)
+        {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            BacSi bacsi = EHealthCareService.Instance.getBacSiBy(bs => bs.email.CompareTo(email) == 0);
+            if(bacsi != null)
+            {
+                bacsi._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bacsi);
+                return View(bacsi);
+            }
+            return RedirectToAction("Regis", "Probn", new { email = email });
+
         }
     }
 }

@@ -8,6 +8,13 @@ namespace EHealthCare_WebApp.Controllers
 {
     public class HomeController : Controller
     {
+        public bool check_session()
+        {
+            string email = Session["email"] as string;
+            if (email != null)
+                return true;
+            return false;
+        }
         public ActionResult Index()
         {
             return View();

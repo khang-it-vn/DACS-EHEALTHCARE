@@ -114,8 +114,8 @@ namespace DbEHealthcare
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoSo>()
-                .Property(e => e.sdt)
-                .IsUnicode(false);
+                .Property(e => e.ten_ung_vien)
+                .IsUnicode(true);
 
             modelBuilder.Entity<LichTuVan>()
                 .Property(e => e.email_BS)

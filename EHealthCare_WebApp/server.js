@@ -70,11 +70,39 @@ const io = require("socket.io")(server, {
 // });
 
 //
+
 app.use(express.static(path.join(__dirname, "")));
 var userConnections = [];
+
 io.on("connection", (socket) => {
     console.log("socket id is ", socket.id);
     socket.on("userconnect", (data) => {
+  
+
+        //const content = 'Some s content!\n';
+
+        
+        var state = 0;
+        var array = fs.readFileSync('App_Data/Data_Process/CurrentRoom.txt').toString().split("\n");
+        //fs.appendFile('App_Data/Data_Process/CurrentRoom.txt', array[0], err => {
+        //    if (err) {
+        //        console.error(err);
+        //    }
+        //    // done!
+        //});
+        array.forEach(i => {
+            if (parseInt(i) === parseInt(data.meetingid))
+            {
+                state = 1;
+            }
+        })
+        
+        if (state == 0)
+        {
+            global.windowVar = "http://localhost:57513/";
+            return 0;
+        }
+
         console.log("userconnect", data.displayName,data.uid, data.meetingid);
         var other_users = userConnections.filter(
           (p) => p.meeting_id == data.meetingid
@@ -135,6 +163,7 @@ io.on("connection", (socket) => {
             });
         }
     });
+    
     // delete db user
     socket.on("disconnect",  function () {
         var disUser = userConnections.find((p) => p.connectionId == socket.id);

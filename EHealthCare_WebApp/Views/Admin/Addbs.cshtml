@@ -1,0 +1,103 @@
+﻿@model DbEHealthcare.Entities.BacSi
+@{
+    Layout = null;
+    List<DbEHealthcare.Entities.BenhVien> bv = ViewData["benhvien"] as List<DbEHealthcare.Entities.BenhVien>;
+    List<DbEHealthcare.Entities.ChuyenKhoa> ck1 = ViewData["chuyenkhoa"] as List<DbEHealthcare.Entities.ChuyenKhoa>;
+    List<DbEHealthcare.Entities.ChuyenKhoa> ck = ViewData["chuyenkhoa"] as List<DbEHealthcare.Entities.ChuyenKhoa>;
+    DbEHealthcare.Entities.ChuyenKhoa ck_null = new DbEHealthcare.Entities.ChuyenKhoa();
+    ck_null.ma_CK = -1;
+    ck_null.ten_CK = "Trống";
+    ck.Add(ck_null);
+    ck = ck.OrderBy(c => c.ma_CK).ToList();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="website" property="og:type">
+    <meta content="https://sy21v21b09.preview-postedstuff.com/V2-2QU6-MFdl-iVm2-8uJ0/" property="og:url">
+    <meta content="https://pro-bee-beepro-thumbnails.s3.amazonaws.com/messages/820856/804801/1702173/7777672_large.jpg" property="og:image">
+    <meta charset="utf-8">
+    <meta content="width=device-width" name="viewport">
+    <link rel="stylesheet" href="~/Content/css/addbs.css">
+</head>
+<body>
+    <div class="bee-page-container">
+        <div class="bee-row bee-row-1">
+            <div class="bee-row-content">
+                <div class="bee-col bee-col-1 bee-col-w12">
+                    <div class="bee-block bee-block-1 bee-heading">
+                        <h1 style="color:#3ebc8d;font-size:38px;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;text-align:left;direction:ltr;font-weight:700;letter-spacing:normal;margin-top:0;margin-bottom:0;">
+                            <span class="tinyMce-placeholder">
+                                E-HealthCare
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="bee-block bee-block-2 bee-heading">
+                        <h1 style="color:#485b6f;font-size:26px;font-family:TimesNewRoman, 'Times New Roman', Times, Beskerville, Georgia, serif;line-height:120%;text-align:left;direction:ltr;font-weight:400;letter-spacing:normal;margin-top:0;margin-bottom:0;">
+                            <span class="tinyMce-placeholder">
+                                Cấp t&agrave;i khoản b&aacute;c s&itilde;
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bee-row bee-row-2">
+            <div class="bee-row-content">
+                <div class="bee-col bee-col-1 bee-col-w12">
+                    <div class="bee-block bee-block-1 bee-form">
+                        <form accept-charset="UTF-8" action="Addbs" autocomplete="on" enctype="multipart/form-data" method="post" target="_self">
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_jsoy2r">
+                                    <label for="id_jsoy2r">
+                                        Họ T&ecirc;n
+                                    </label>
+                                    <input id="id_jsoy2r" name="name" readonly type="text" value="@Model.hoten">
+                                </div>
+                            </div>
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_1jf91o">
+                                    <label for="id_1jf91o">
+                                        Email
+                                    </label>
+                                    <input id="id_1jf91o" name="email" readonly type="email" value="@Model.email">
+                                </div>
+                            </div>
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_pj75nq">
+                                    <label for="id_pj75nq">
+                                        Bệnh Viện
+                                    </label>
+                                        @Html.DropDownList("benhvien", new SelectList(bv, "id", "ten_bv"), htmlAttributes: new { @id = "id_pj75nq" })
+                                </div>
+                            </div>
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_w6jcql">
+                                    <label for="id_w6jcql">
+                                        Chuy&ecirc;n Khoa
+                                    </label>
+                                    @Html.DropDownList("chuyenkhoa1", new SelectList(ck1, "ma_CK", "ten_CK"), htmlAttributes: new { @id = "id_w6jcql" })
+                                    @Html.DropDownList("chuyenkhoa2", new SelectList(ck, "ma_CK", "ten_CK"))
+                                    @Html.DropDownList("chuyenkhoa3", new SelectList(ck, "ma_CK", "ten_CK"))
+                                </div>
+                            </div>
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_moxua3">
+                                    <div class="bee-button-container">
+                                        <button id="id_moxua3" name="submit" type="submit" value="Gửi">
+                                            Gửi
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

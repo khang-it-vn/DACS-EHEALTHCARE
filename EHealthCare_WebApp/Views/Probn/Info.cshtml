@@ -1,0 +1,358 @@
+﻿@model DbEHealthcare.Entities.BacSi
+
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout_bn.cshtml";
+}
+
+    @*<meta content="summary_large_image" name="twitter:card" />
+        <meta content="website" property="og:type" />
+        <meta content="" property="og:description" />
+        <meta content="https://6af6nuomym.preview-postedstuff.com/V2-umra-r2xA-ZFC2S-uBb1/" property="og:url" />
+        <meta content="https://pro-bee-beepro-thumbnails.s3.amazonaws.com/messages/824552/808515/1706887/7775912_large.jpg" property="og:image" />
+        <meta content="" property="og:title" />
+        <meta content="" name="description" />
+        <meta charset="utf-8" />
+        <meta content="width=device-width" name="viewport" />*@
+
+<div id="content">
+    <div class="bee-page-container">
+        <div class="bee-row bee-row-1">
+            <div class="bee-row-content">
+                <div class="bee-col bee-col-1 bee-col-w12">
+                    <div class="bee-block bee-block-1 bee-image">
+                        <img alt="" class="bee-center bee-fixedwidth" src="~/Content/images/@Model.hinhanh" style="max-width:256px;" />
+                    </div>
+                    <div class="bee-block bee-block-2 bee-text">
+                        <div class="bee-text-content" style="line-height: 120%; font-size: 12px; font-family: TimesNewRoman, 'Times New Roman', Times, Beskerville, Georgia, serif; color: #555555;">
+                            <p style="font-size: 16px; line-height: 19px; text-align: center;">
+                                <strong style="">
+                                    @Model.hoten
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bee-row bee-row-2">
+            <div class="bee-row-content">
+                <div class="bee-col bee-col-1 bee-col-w12">
+                    <div class="bee-block bee-block-1 bee-form">
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_kcon62">
+                                <label for="id_kcon62">
+                                    Năm sinh
+                                </label>
+                                <input id="id_kcon62" name="firstname" required="" type="text" value="@Model.ntns" readonly />
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_lnsd3e">
+                                <label for="id_lnsd3e">
+                                    Học vị
+                                </label>
+                                <input id="id_lnsd3e" name="lastname" required="" type="text" value="@Model.TrinhDo.TenHVHH" readonly/>
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_u9f6et">
+                                <label for="id_u9f6et">
+                                    Đơn vị Công Tác
+                                </label>
+                                <input id="id_u9f6et" name="email" required="" type="text"value="@Model.BenhVien.diachi_bv" readonly/>
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vobtzh">
+                                <label for="id_vobtzh">
+                                    Email
+                                </label>
+                                <input id="id_vobtzh" name="telephone" type="email" value="@Model.email" readonly />
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_gn6vay">
+                                <label for="id_gn6vay">
+                                    Giới tính
+                                </label>
+                                <input id="id_gn6vay" name="number" type="text" value="@(Model.gioitinh == true ? "Nam" : "Nữ")" readonly/>
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_ztnqtb">
+                                <label for="id_ztnqtb">
+                                    Kinh nghiệm
+                                </label>
+                                <textarea id="id_ztnqtb" name="message" rows="4" readonly> @Model.kinhnghiem</textarea>
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_opwz1n">
+                                <div class="bee-button-container">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+    .bee-row, .bee-row-content {
+			position: relative
+		}
+
+		.bee-form .bee-form-row .bee-field button {
+			font-size: inherit;
+			font-family: inherit
+		}
+
+		.bee-row-1,
+		.bee-row-2,
+		.bee-row-3,
+		.bee-row-3 .bee-row-content {
+			background-repeat: no-repeat
+		}
+
+		body {
+			background-color: #fff;
+			color: #000;
+			font-family: Arial, Helvetica Neue, Helvetica, sans-serif
+		}
+
+		a {
+			color: #fff
+		}
+
+		* {
+			box-sizing: border-box
+		}
+
+		body,
+		p {
+			margin: 0
+		}
+
+		.bee-row-content {
+			max-width: 1280px;
+			margin: 0 auto;
+			display: flex
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 div.label:not(.inline),
+		.bee-row-2 .bee-col-1 .bee-block-1 label:not(.inline),
+		.bee-row-content .bee-col-w12 {
+			flex-basis: 100%
+		}
+
+		.bee-icon .bee-icon-label-right a {
+			text-decoration: none
+		}
+
+		.bee-image {
+			overflow: auto
+		}
+
+		.bee-image .bee-center {
+			margin: 0 auto
+		}
+
+		.bee-row-1 .bee-col-1 .bee-block-1,
+		.bee-row-2 .bee-col-1 .bee-block-1 .bee-form-row:not(.bee-sidelabel) input:not([type=checkbox]):not([type=radio]) {
+			width: 100%
+		}
+
+		.bee-form .bee-form-row .bee-field {
+			padding: 3px;
+			display: flex;
+			flex: 1;
+			flex-wrap: wrap;
+			align-items: center
+		}
+
+		.bee-form .bee-form-row .bee-field input:not([type=checkbox]):not([type=radio]),
+		.bee-form .bee-form-row .bee-field textarea {
+			flex-grow: 1;
+			font-family: inherit;
+			font-size: inherit
+		}
+
+		.bee-form .bee-form-row .bee-field .bee-button-container {
+			flex-grow: 1
+		}
+
+		.bee-form input[type=color] {
+			border: none;
+			height: 38px
+		}
+
+		.bee-form input[type=color]::-webkit-color-swatch-wrapper {
+			margin: 0;
+			padding: 2px
+		}
+
+		.bee-form input[type=color]::-webkit-color-swatch {
+			margin: 0;
+			padding: 0
+		}
+
+		.bee-icon {
+			display: inline-block;
+			vertical-align: middle
+		}
+
+		.bee-icon .bee-icon-image {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: -4px
+		}
+
+		.bee-icon .bee-icon-label-right {
+			display: inline-block
+		}
+
+		.bee-image img {
+			display: block;
+			width: 100%
+		}
+
+		.bee-text {
+			overflow-wrap: anywhere;
+		}
+
+		@@media (max-width:768px) {
+			.bee-form form {
+				width: 100% !important
+			}
+
+			.bee-row-content:not(.no_stack) {
+				display: block
+			}
+		}
+
+		.bee-row-1 .bee-row-content,
+		.bee-row-2 .bee-row-content {
+			background-color: #fff;
+			background-repeat: no-repeat;
+			color: #000
+		}
+
+		.bee-row-1 .bee-col-1,
+		.bee-row-2 .bee-col-1,
+		.bee-row-3 .bee-col-1 {
+			padding-bottom: 5px;
+			padding-top: 5px
+		}
+
+		.bee-row-1 .bee-col-1 .bee-block-2 {
+			padding: 10px
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 {
+			font-family: inherit;
+			font-size: 14px;
+			padding: 10px;
+			text-align: center
+		}
+
+		.bee-row-3 .bee-row-content {
+			color: #000
+		}
+
+		.bee-row-3 .bee-col-1 .bee-block-1 {
+			color: #9d9d9d;
+			font-family: inherit;
+			font-size: 15px;
+			padding-bottom: 5px;
+			padding-top: 5px;
+			text-align: center
+		}
+
+		.bee-row-3 .bee-col-1 .bee-block-1 .bee-icon-image {
+			padding: 5px 6px 5px 5px
+		}
+
+		.bee-row-3 .bee-col-1 .bee-block-1 .bee-icon {
+			margin-left: 0;
+			margin-right: 0
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1,
+		.bee-row-2 .bee-col-1 .bee-block-1 .bee-button-container {
+			text-align: "center"
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 form {
+			display: inline-block;
+			width: 100%
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 div.label,
+		.bee-row-2 .bee-col-1 .bee-block-1 label {
+			color: #000;
+			letter-spacing: 0;
+			line-height: 200%;
+			text-align: left;
+			display: block
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 ::-webkit-input-placeholder {
+			color: #000
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 :-moz-placeholder {
+			color: #000
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 ::-moz-placeholder {
+			color: #000
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 :-ms-input-placeholder {
+			color: #000
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 .bee-field>label:first-child,
+		.bee-row-2 .bee-col-1 .bee-block-1 div.label {
+			padding: 3px
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 input:not([type=checkbox]):not([type=radio]):not([type=image]),
+		.bee-row-2 .bee-col-1 .bee-block-1 textarea {
+			background-color: #fff;
+			border-bottom: 1px solid #000;
+			border-left: 1px solid transparent;
+			border-radius: 0;
+			border-right: 1px solid transparent;
+			border-top: 1px solid transparent;
+			color: #000;
+			padding: 5px;
+			min-height: 38px
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 input:not([type=checkbox]):not([type=radio]):focus,
+		.bee-row-2 .bee-col-1 .bee-block-1 textarea:focus {
+			outline-color: #3aaee0
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 button {
+			background-color: #3aaee0;
+			border-bottom: 0 solid transparent;
+			border-left: 0 solid transparent;
+			border-radius: 4px;
+			border-right: 0px solid transparent;
+			border-top: 0 solid transparent;
+			color: #fff;
+			letter-spacing: 0;
+			line-height: 200%;
+			padding: 5px 20px;
+			width: 100%
+		}
+
+</style>
+

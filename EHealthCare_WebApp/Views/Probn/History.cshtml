@@ -5,7 +5,7 @@
     List<DbEHealthcare.Entities.LichTuVan> lichtuvans = ViewData["lichtuvans"] as List<DbEHealthcare.Entities.LichTuVan>;
     int sll = 0;
     int ct = 100;
-
+    List<DbEHealthcare.Entities.BacSi> bacsis = ViewData["bacsis"] as List<DbEHealthcare.Entities.BacSi>;
     string chitiettuvan = ViewData["chitiettuvans"] as string;
 }
 <script>
@@ -69,7 +69,16 @@
                             </tr>
                             <tr>
                                 <td>Chuyên khoa:</td>
-                                <td>@ltv.BacSi.ChuyenKhoa.ten_CK</td>
+                                <td>@{
+                                    DbEHealthcare.Entities.BacSi bss = bacsis.SingleOrDefault(b => b.email.CompareTo(ltv.email_BS) == 0);
+                                    int _solan = bss._ct_chuyenkhoas.Count();
+                                    foreach (var i in bss._ct_chuyenkhoas)
+                                    {
+                                        @i.ChuyenKhoa.ten_CK @(_solan > 1 ? ", ": "")
+                                        --_solan;
+                                    }
+
+                                }</td>
                             </tr>
                         </table>
                     </div>
@@ -132,7 +141,7 @@
 #content-element{
     margin: 10px;
     background-color: lightgray;
-    width: 580px;
+    width: 740px;
     height: 150px;
     border-radius: 15px;
     padding: 5px 5px;
@@ -140,7 +149,7 @@
    
 }
 .element-1{
-    width: 450px;
+    width: 610px;
     height: 100%;
     border-radius: 15px;
     float: left;

@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EHealthCareService.cs" />
+    <Compile Include="IRepositories\IAdminRepository.cs" />
     <Compile Include="IRepositories\IBacSiRepository.cs" />
     <Compile Include="IRepositories\IBenhNhanRepository.cs" />
     <Compile Include="IRepositories\IBenhVienRepository.cs" />
+    <Compile Include="IRepositories\IChiTietChuyenKhoaRepository.cs" />
     <Compile Include="IRepositories\IChiTietTuVanRepository.cs" />
     <Compile Include="IRepositories\IChuyenKhoaRepository.cs" />
     <Compile Include="IRepositories\IHoSoRepository.cs" />
@@ -64,9 +66,11 @@
     <Compile Include="IRepositories\IRepository.cs" />
     <Compile Include="IRepositories\ITrinhDoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Repositories\BacSiRepository.cs" />
     <Compile Include="Repositories\BenhNhanRepository.cs" />
     <Compile Include="Repositories\BenhVienRepository.cs" />
+    <Compile Include="Repositories\ChiTietChuyenKhoaRepository.cs" />
     <Compile Include="Repositories\ChiTietTuVanRepository.cs" />
     <Compile Include="Repositories\ChuyenKhoaRepository.cs" />
     <Compile Include="Repositories\HoSoRepository.cs" />

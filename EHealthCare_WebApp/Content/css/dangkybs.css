@@ -1,0 +1,276 @@
+﻿.bee-row,
+     .bee-row-content {
+         position: relative
+     }
+
+     .bee-form .bee-form-row .bee-field button {
+         font-size: inherit;
+         font-family: inherit
+     }
+
+     .bee-row-1,
+     .bee-row-2,
+     .bee-row-3,
+     .bee-row-4 {
+         background-repeat: no-repeat
+     }
+
+     body {
+         background-color: #fff;
+         color: #000;
+         font-family: Arial, Helvetica Neue, Helvetica, sans-serif
+     }
+
+     a {
+         color: #0068a5
+     }
+
+     * {
+         box-sizing: border-box
+     }
+
+     body,
+     h1 {
+         margin: 0
+     }
+
+     .bee-row-content {
+         max-width: 785px;
+         margin: 0 auto;
+         display: flex
+     }
+
+     .bee-row-content .bee-col-w1 {
+         flex-basis: 8%
+     }
+
+     .bee-row-content .bee-col-w4 {
+         flex-basis: 33%
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 div.label:not(.inline),
+     .bee-row-3 .bee-col-1 .bee-block-1 label:not(.inline),
+     .bee-row-content .bee-col-w12 {
+         flex-basis: 100%
+     }
+
+     .bee-button .content {
+         text-align: center
+     }
+
+     .bee-button a,
+     .bee-icon .bee-icon-label-right a {
+         text-decoration: none
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 .bee-form-row:not(.bee-sidelabel) input:not([type=checkbox]):not([type=radio]) {
+         width: 100%
+     }
+
+     .bee-form .bee-form-row .bee-field {
+         padding: 3px;
+         display: flex;
+         flex: 1;
+         flex-wrap: wrap;
+         align-items: center
+     }
+
+     .bee-form .bee-form-row .bee-field.bee-inline-field {
+         flex-wrap: nowrap;
+         align-items: flex-start
+     }
+
+     .bee-form .bee-form-row .bee-field input:not([type=checkbox]):not([type=radio]) {
+         flex-grow: 1;
+         font-family: inherit;
+         font-size: inherit
+     }
+
+     .bee-form .bee-form-row .bee-field input[type=checkbox]:not(:first-of-type) {
+         margin-left: 15px
+     }
+
+     .bee-form .bee-form-row .bee-field .bee-button-container {
+         flex-grow: 1
+     }
+
+     .bee-form input[type=color] {
+         border: none;
+         height: 38px
+     }
+
+     .bee-form input[type=color]::-webkit-color-swatch-wrapper {
+         margin: 0;
+         padding: 2px
+     }
+
+     .bee-form input[type=color]::-webkit-color-swatch {
+         margin: 0;
+         padding: 0
+     }
+
+     .bee-icon {
+         display: inline-block;
+         vertical-align: middle
+     }
+
+     .bee-icon .bee-icon-image {
+         display: inline-block;
+         vertical-align: middle;
+         margin-right: -4px
+     }
+
+     .bee-icon .bee-icon-label-right {
+         display: inline-block
+     }
+
+     @media (max-width:768px) {
+         .bee-form form {
+             width: 100% !important
+         }
+
+         .bee-row-content:not(.no_stack) {
+             display: block
+         }
+     }
+
+     .bee-row-1 .bee-row-content,
+     .bee-row-2 .bee-row-content,
+     .bee-row-3 .bee-row-content,
+     .bee-row-4 .bee-row-content {
+         background-repeat: no-repeat;
+         color: #000
+     }
+
+     .bee-row-1 .bee-col-1,
+     .bee-row-2 .bee-col-1,
+     .bee-row-2 .bee-col-2,
+     .bee-row-2 .bee-col-3,
+     .bee-row-2 .bee-col-4,
+     .bee-row-2 .bee-col-5,
+     .bee-row-2 .bee-col-6,
+     .bee-row-2 .bee-col-7,
+     .bee-row-2 .bee-col-8,
+     .bee-row-2 .bee-col-9,
+     .bee-row-3 .bee-col-1,
+     .bee-row-4 .bee-col-1 {
+         padding-bottom: 5px;
+         padding-top: 5px
+     }
+
+     .bee-row-1 .bee-col-1 .bee-block-1,
+     .bee-row-1 .bee-col-1 .bee-block-2 {
+         text-align: center;
+         width: 100%
+     }
+
+     .bee-row-1 .bee-col-1 .bee-block-3 {
+         width: 100%;
+         text-align: center
+     }
+
+     .bee-row-2 .bee-col-1 .bee-block-1 {
+         padding: 10px;
+         text-align: left
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 {
+         font-family: inherit;
+         font-size: 14px;
+         padding: 10px;
+         text-align: center
+     }
+
+     .bee-row-4 .bee-col-1 .bee-block-1 {
+         color: #9d9d9d;
+         font-family: inherit;
+         font-size: 15px;
+         padding-bottom: 5px;
+         padding-top: 5px;
+         text-align: center
+     }
+
+     .bee-row-4 .bee-col-1 .bee-block-1 .bee-icon-image {
+         padding: 5px 6px 5px 5px
+     }
+
+     .bee-row-4 .bee-col-1 .bee-block-1 .bee-icon {
+         margin-left: 0;
+         margin-right: 0
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1,
+     .bee-row-3 .bee-col-1 .bee-block-1 .bee-button-container {
+         text-align: "center"
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 form {
+         display: inline-block;
+         width: 100%
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 div.label,
+     .bee-row-3 .bee-col-1 .bee-block-1 label {
+         color: #000;
+         letter-spacing: 0;
+         line-height: 200%;
+         text-align: left;
+         display: block
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 ::-webkit-input-placeholder {
+         color: #000
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 :-moz-placeholder {
+         color: #000
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 ::-moz-placeholder {
+         color: #000
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 :-ms-input-placeholder {
+         color: #000
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 .bee-field>label:first-child,
+     .bee-row-3 .bee-col-1 .bee-block-1 div.label {
+         padding: 3px
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 .bee-field.bee-inline-field input[type=checkbox] {
+         position: relative;
+         color: purple;
+         top: 5px
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 input:not([type=checkbox]):not([type=radio]):not([type=image]) {
+         background-color: #fff;
+         border-bottom: 1px dashed #37877d;
+         border-left: 1px dashed #37877d;
+         border-radius: 4px;
+         border-right: 1px dashed #37877d;
+         border-top: 1px dashed #37877d;
+         color: #000;
+         padding: 5px;
+         min-height: 38px
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 input:not([type=checkbox]):not([type=radio]):focus {
+         outline-color: #3aaee0
+     }
+
+     .bee-row-3 .bee-col-1 .bee-block-1 button {
+         background-color: #3aaee0;
+         border-bottom: 0 solid transparent;
+         border-left: 0 solid transparent;
+         border-radius: 4px;
+         border-right: 0px solid transparent;
+         border-top: 0 solid transparent;
+         color: #fff;
+         letter-spacing: 0;
+         line-height: 200%;
+         padding: 5px 20px;
+         width: 20%
+     }

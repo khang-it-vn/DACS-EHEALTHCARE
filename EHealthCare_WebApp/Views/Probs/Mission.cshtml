@@ -85,7 +85,7 @@
         <label style="width: 315px; text-align: center; padding-top: 5px;">THÔNG TIN BUỔI TƯ VẤN</label>
         <br />
         <hr />
-        <div class="btn btn-success " style="display: inline"><a href="" target="_blank" class="joinroom"  style="color: white; text-decoration: none">Vào phòng</a></div>
+        <div class="btn btn-success " style="display: inline"><a href="" target="_blank" class="joinroom"  style="color: white; text-decoration: none">Mở phòng</a></div>
         <div class="btn btn-info createdetail 31detail" style="display: inline">Tạo phiếu tư vấn</div>
         <div class="btn btn-danger" style="display: inline" onclick="offdetailall()">Cancle</div>
     </div>
@@ -124,7 +124,7 @@
                     {
                         var detail_all = $("#detail-all").clone();
                         detail_all.find("div.createdetail").addClass("@(ltv.id_cttv)detail");
-                        detail_all.find("a.joinroom").attr("href","http://localhost:3000/index.html?meeting_id="+ @ltv.phongtuvan +"&user_name=@(Html.Raw(ltv.BenhNhan.hoten))&user_id=@ltv.email_BN");
+                        detail_all.find("a.joinroom").attr("href","@(EHealthCare_WebApp.Utils.Domain._domain)Probs/MoPhong?id_cttv=@ltv.id_cttv");
                         detail_all.addClass("offdetailon");
                         detail_all.show();
                         $("#content").prepend(detail_all);
