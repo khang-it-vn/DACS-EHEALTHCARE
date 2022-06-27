@@ -21,6 +21,12 @@ namespace EHealthCare_WebApp.Controllers
         [HttpPost]
         public ActionResult CheckLogin(string mail, string password)
         {
+            Admin ad = EHealthCareService.Instance.getAdmins().SingleOrDefault(a => a.email.CompareTo(mail) == 0 && a.Pass.CompareTo(password) == 0);
+            if(ad != null)
+            {
+                Session["email"] = ad.email;
+                return RedirectToAction("QuanLyCV", "Admin");
+            }
             BenhNhan bn = new BenhNhan() { email = mail, matkhau = password};
             BenhNhan info_bn = EHealthCareService.Instance.Login(bn);
             if (info_bn != null)
@@ -106,7 +112,7 @@ namespace EHealthCare_WebApp.Controllers
             bn.quoctich = quoctich;
             bn.ntns = ntns;
             bn.dc = diachi;
-            bn.hinhanh = "avatar.png";
+            bn.hinhanh = "avartar.png";
             EHealthCareService.Instance.Add(bn);
             EHealthCareService.Instance.Save();
             return RedirectToAction("Index");

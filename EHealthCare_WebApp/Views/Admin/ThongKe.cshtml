@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="thongke">
+    <label class="center">Tổng số lượng bệnh nhân</label>
+    <br />
+    <hr />
+    <img class="hinh" src="~/Content/images/people.png" />
+    <label> @ViewBag.bn</label>
+</div>
+
+<div class="thongke">
+    <label class="center">Tổng số lượng bác sĩ</label>
+    <br />
+    <hr />
+    <img class="hinh" src="~/Content/images/group.png" />
+    <label> @ViewBag.bs</label>
+</div>
+
+<div class="thongke">
+    <label class="center">Tổng số lượng bệnh viện</label>
+    <br />
+    <hr />
+    <img class="hinh" src="~/Content/images/1home.png" />
+    <label> @ViewBag.bv</label>
+</div>
+
+<div class="thongke">
+    <label class="center">Tổng số lượng các cuộc tư vấn</label>
+    <br />
+    <hr />
+    <img class="hinh" src="~/Content/images/talking.png" />
+    <label> @ViewBag.cttv</label>
+</div>
+
+<style>
+    .thongke{
+        width: 300px;
+        height: 150px;
+        float: left;
+        margin: 15px;
+        background-color: lightblue;
+        padding: 10px;
+        border-radius: 15px;
+        align-items: center;
+        align-content: center;
+        font-weight: 600;
+
+    }
+    img{
+        width: 100%;
+        height: 100%;
+    }
+    .hinh{
+        margin-left: 70px;
+        width: 80px;
+        height: 80px;
+    }
+    .center{
+        margin-left: 30px;
+    }
+
+</style>

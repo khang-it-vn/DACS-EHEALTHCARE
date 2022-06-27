@@ -3,6 +3,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_bs.cshtml";
     DbEHealthcare.Entities.BacSi bs = ViewData["bacsi"] as DbEHealthcare.Entities.BacSi;
+    List<DbEHealthcare.Entities.ChuyenKhoa> chuyenkhoas = ViewData["chuyenkhoas"] as List<DbEHealthcare.Entities.ChuyenKhoa>;
+    List<DbEHealthcare.Entities.ChuyenKhoa> chuyenkhoa_default = chuyenkhoas;
+    DbEHealthcare.Entities.ChuyenKhoa ck_null = new DbEHealthcare.Entities.ChuyenKhoa();
+    ck_null.ma_CK = -1;
+    ck_null.ten_CK = "Trống";
+    chuyenkhoas.Add(ck_null);
+    chuyenkhoas = chuyenkhoas.OrderBy(ck => ck.ma_CK).ToList();
+
+    List<DbEHealthcare.Entities.BenhVien> benhviens = ViewData["benhviens"] as List<DbEHealthcare.Entities.BenhVien>;
 }
 
 <script>
@@ -37,30 +46,31 @@
         }
     });
 
+    
 
 </script>
 
 <div id="content" style="font-family: Arial; font-weight: 400; font-size: 25px">
     @Session["test"]
-    <form action="Update" method="post" enctype="multipart/form-data">
+    <form action="@(EHealthCare_WebApp.Utils.Domain._domain)Probs/Update" method="post" enctype="multipart/form-data">
         <div id="pro-head">
             <div id="pro-submit">
                 <input type="submit" value="Cập Nhật">
             </div>
             <div id="pro-img">
-                <img src="~/Content/images/@Session["img"]" onclick="loadImage()">
+                <img src="~/Content/images/@Session["img"]" @*onclick="loadImage()"*@>
             </div>
 
             <div id="pro-ht">
-                <input type="text" name="hoten" value="@bs.hoten" size="15" style="text-align: center;">
+                <input type="text"  value="@bs.hoten" size="15" style="text-align: center;">
             </div>
             <hr>
-            <div id="fileload" style="display: none">
+            @*<div id="fileload" style="display: none">
                 <input style="margin-left: 15px" type="file" accept="image/png" name="hinhanh">
                 <div onclick="closeFile()" style="float: left; font-size: 22px; margin-right: 10%">
                     <button> X </button>
                 </div>
-            </div>
+            </div>*@
         </div>
         <div id="pro-body">
             <table style="width: 100%; border: 1px solid black; padding: 5px 10px;">
@@ -87,24 +97,53 @@
                         <label>Trình Độ Chuyên Môn:</label>
                     </td>
                     <td>
-                        <input type="text" name="tdcm" value="@bs.tdcm" readonlyc">
+                       @bs.tdcm
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Chuyên Khoa: </label>
                     </td>
-                    <td>
-                        <input type="text" value="@bs.ChuyenKhoa.ten_CK" maxlength="13">
+                    <td id="current_ck" >
+                        @{
+                            int count = bs._ct_chuyenkhoas.Count();
+                            foreach(var i in bs._ct_chuyenkhoas)
+                            {
+                                @i.ChuyenKhoa.ten_CK @(count > 1 ? ", ": "")
+                                count--;
+                            }
+                        }
+                        @*<script>
+                            $("#current_ck").on("click", function(){
+                                var element = document.getElementById("current_ck");
+                                element.textContent = "";
+                                $("#current_ck").append(`@Html.DropDownList("ck1", new SelectList(chuyenkhoa_default, "ma_CK","ten_CK"))
+                                                            @Html.DropDownList("ck2", new SelectList(chuyenkhoas,"ma_CK","ten_CK"))
+                                                            @Html.DropDownList("ck3", new SelectList(chuyenkhoas, "ma_CK", "ten_CK"))
+                                                            <input type="file" name="minhchung_ck"/>`)
+                                $("#current_ck").removeAttr("id")
+                            })
+                        </script>*@
                     </td>
+                    
                 </tr>
                 <tr>
                     <td>
                         <label>Địa Chỉ Bệnh Viện Trực Thuộc:</label>
                     </td>
-                    <td>
-                        <input type="text" value="@bs.dc_bv_tt" name="dcbvtt" style="width: 100%">
+                    <td id="bv_current" >
+                        @bs.BenhVien.ten_bv
+                        @*<script>
+                            $("#bv_current").on("click", function(){
+                                var element = document.getElementById("bv_current");
+                                element.textContent = "";
+                                $("#bv_current").append(`@Html.DropDownList("benhvien", new SelectList(benhviens, "id", "ten_bv"))
+                        <input type="file" name="minhchung_bv"/>`);
+                                $("#bv_current").removeAttr("id");
+                            });
+                        </script>*@
                     </td>
+                    
                 </tr>
                 <tr>
                     <td>
@@ -113,6 +152,14 @@
                     <td>
                         <textarea name="kinhnghiem" style="width: 100%; height: 150px;">@bs.kinhnghiem</textarea>
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Upload file thông tin cá nhân:</label>
+                    </td>
+                    <td>
+                        <input type="file" name="file_info"/>
+                     </td>
                 </tr>
                 
             </table>

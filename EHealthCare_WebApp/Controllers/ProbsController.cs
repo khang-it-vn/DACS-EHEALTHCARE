@@ -15,16 +15,39 @@ namespace EHealthCare_WebApp.Controllers
     public class ProbsController : Controller
     {
         // GET: Probs
+
+        public bool check_session()
+        {
+            string email = Session["email"] as string;
+            if (email != null)
+                return true;
+            return false;
+        }
         public ActionResult Index()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             string email = Session["email"] as string;
             BacSi bacsi = EHealthCareService.Instance.getBacSiBy(bs => bs.email.CompareTo(email) == 0);
             ViewData["bacsi"] = bacsi;
+            bacsi._ct_chuyenkhoas = EHealthCareService.Instance.getChiTietChuyenKhoa(bacsi);
+            List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
+            ViewData["chuyenkhoas"] = chuyenkhoas;
+            List<BenhVien> benhviens = EHealthCareService.Instance.getBenhViens();
+            ViewData["benhviens"] = benhviens;
             return View();
         }
 
         public ActionResult Manage()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             string email = Session["email"] as string;
             BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email == email);
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVanBy(bs);
@@ -38,6 +61,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult Books(String email,String ngay,String gio)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             DateTime _ntv = DateTime.Parse(ngay + " " + gio);
 
             String email_bs = (String)Session["email"];
@@ -61,6 +89,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult History()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             String email = Session["email"] as String;
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
             List<LichTuVan> lichtuvanOfSession  =  lichtuvans.Where(ltv => DateTime.Compare(DateTime.Now, ltv.ntv) > 0 && String.Compare(ltv.email_BS, email) == 0 && ltv.email_BN != null).ToList();
@@ -95,6 +128,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult FilterMission(DateTime date)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (DateTime.Compare(date, DateTime.Now) < 0)
             {
                 return RedirectToAction("Mission");
@@ -135,7 +173,12 @@ namespace EHealthCare_WebApp.Controllers
         }
         public ActionResult FilterHistory(DateTime date)
         {
-            if(DateTime.Compare(date, DateTime.Now) > 0)
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (DateTime.Compare(date, DateTime.Now) > 0)
             {
                 return RedirectToAction("History");
             }
@@ -183,35 +226,68 @@ namespace EHealthCare_WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(DateTime ntns, String hoten, String kinhnghiem, String dcbvtt, bool gioitinh, String tdcm, HttpPostedFileBase hinhanh)
+        public ActionResult Update(DateTime ntns, String kinhnghiem,HttpPostedFileBase file_info)
         {
-            string email = Session["email"] as string;
-            BacSi bacsi = EHealthCareService.Instance.getBacSiBy(bs => bs.email.CompareTo(email) == 0);
-            bacsi.ntns = ntns;
-            bacsi.hoten = hoten;
-            bacsi.kinhnghiem = kinhnghiem;
-            bacsi.dc_bv_tt = dcbvtt;
-            bacsi.gioitinh = gioitinh;
-            bacsi.tdcm = tdcm;
-            if(hinhanh != null)
+            bool exists_session = check_session();
+            if (!exists_session)
             {
-               // System.IO.File.Delete(Path.Combine(Server.MapPath("~/Content/images"), bacsi.hinhanh));
-                String newNameImg = SetNameImg(hinhanh);
-                SaveImg(hinhanh, newNameImg);
-                bacsi.hinhanh = newNameImg;
+                return RedirectToAction("Index", "Login");
             }
+            string email_bs = Session["email"] as string;
+            BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email.CompareTo(email_bs) == 0);
+            bs.ntns = ntns;
+            bs.kinhnghiem = kinhnghiem;
+            EHealthCareService.Instance.UpdateBS(bs);
+            EHealthCareService.Instance.Save();
+            if(file_info != null)
+            {
 
-            EHealthCareService.Instance.UpdateBS(bacsi);
-            return RedirectToAction("Index");
+                string newNameFile = NewNameFile(file_info);
+                SaveFileInfo(file_info, newNameFile);
+
+                var path = Server.MapPath(@"~/App_Data/UpdateInfo/infoUpdates.txt");
+
+                using (StreamWriter writer = new StreamWriter(path, true))
+                {
+                    writer.WriteLine(email_bs);
+                }
+                using (StreamWriter writer = new StreamWriter(path, true))
+                {
+                    writer.WriteLine(DateTime.Now);
+                }
+                using (StreamWriter writer = new StreamWriter(path, true))
+                {
+                    writer.WriteLine(newNameFile);
+                }
+            }
+            return RedirectToAction("Index","Probs");
+        }
+
+        private string NewNameFile(HttpPostedFileBase file_info)
+        {
+            String name = Path.GetFileNameWithoutExtension(file_info.FileName);
+            String extension = Path.GetExtension(file_info.FileName);
+            return name + DateTime.Now.ToString("yyyyMMddTHHmmss") + extension;
+        }
+        private void SaveFileInfo(HttpPostedFileBase file_info, string name)
+        {
+            file_info.SaveAs(Path.Combine(Server.MapPath("~/App_Data/UpdateInfo"), name));
         }
 
         public ActionResult Mission()
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             string email = Session["email"] as string;
             BacSi bacsi = EHealthCareService.Instance.getBacSiBy(bs => bs.email.CompareTo(email) == 0);
             List<LichTuVan> lichtuvan_all = EHealthCareService.Instance.getLichTuVans();
+            string s_current_time = DateTime.Now.ToShortDateString() + " 00:00:00";
+            DateTime d_current_time = DateTime.Parse(s_current_time);
 
-            List<LichTuVan> lichtuvan_of_bs = lichtuvan_all.Where(l => l.email_BS.CompareTo(bacsi.email) == 0 && l.ntv >= DateTime.Now && l.email_BN != null).ToList();
+            List<LichTuVan> lichtuvan_of_bs = lichtuvan_all.Where(l => l.email_BS.CompareTo(bacsi.email) == 0 && l.ntv >= d_current_time && l.email_BN != null).ToList();
 
             ViewData["lichtuvans"] = lichtuvan_of_bs;
 
@@ -243,6 +319,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult SaveDetail(int id_cttv, string chiDinh, string chuanDoan, string trieuChung, string ghiChu)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ChiTietTuVan cttv = EHealthCareService.Instance.getChiTietTuVan(id_cttv);
 
             cttv.chiDinh = chiDinh;
@@ -258,6 +339,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult ReplaceCalender(string ngaycu, string giocu,string email,DateTime ngay,int gio)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             DateTime _ntv = DateTime.Parse(ngaycu + " " + giocu);
             List<LichTuVan> ltvs = EHealthCareService.Instance.getLichTuVans();
 
@@ -286,6 +372,11 @@ namespace EHealthCare_WebApp.Controllers
 
         public ActionResult HuyLich(string ngay, string gio)
         {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             string _s_ntv = ngay +  " " + gio;
 
             DateTime _d_ntv = DateTime.Parse(_s_ntv);
@@ -304,6 +395,50 @@ namespace EHealthCare_WebApp.Controllers
             EHealthCareService.Instance.Save();
 
             return RedirectToAction("Manage");
+        }
+
+        public ActionResult MoPhong(int id_cttv)
+        {
+            bool exists_session = check_session();
+            if (!exists_session)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            string email = Session["email"] as string;
+            BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email.CompareTo(email)==0);
+
+            List<LichTuVan> ltvs = EHealthCareService.Instance.getLichTuVanBy(bs);
+            LichTuVan ltv = ltvs.SingleOrDefault(l => l.id_cttv == id_cttv);
+            
+            if (DateTime.Now.Subtract(ltv.ntv) > TimeSpan.FromHours(1))
+            {
+                return RedirectToAction("Mission");
+            }
+            if(ltv != null)
+            {
+                string url_room = "http://localhost:3000/index.html?user_id="+email+"&meeting_id="+ltv.phongtuvan+"&user_name="+bs.hoten;
+                string file_room = Server.MapPath("~/App_Data/Data_Process/CurrentRoom.txt");
+                string[] room_string = System.IO.File.ReadAllText(file_room).Split('\n');
+                
+                foreach(var i in room_string)
+                {
+                    int temp;
+                    if(int.TryParse(i,out temp))
+                    {
+                        if (temp == ltv.phongtuvan)
+                        {
+                            return Redirect(url_room);
+                        }
+                    }
+                   
+                }
+                System.IO.File.AppendAllText(file_room,  ltv.phongtuvan.ToString() + Environment.NewLine);
+
+                return Redirect(url_room);
+                
+            }
+           
+            return RedirectToAction("Mission");
         }
     }
 }

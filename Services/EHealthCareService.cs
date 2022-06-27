@@ -36,11 +36,21 @@ namespace Services
 
         private IChuyenKhoaRepository chuyenKhoas;
 
-        
 
+        private IHoSoRepository hoSos;
         public BenhNhan getBenhNhan(Expression<Func<BenhNhan, bool>> expression)
         {
             return benhNhans.GetBy(expression);
+        }
+
+        public void Add(HoSo hs)
+        {
+            hoSos.Add(hs);
+        }
+
+        public List<BenhVien> getBenhViens()
+        {
+            return benhViens.GetAll().ToList();
         }
 
         public BacSi LoginBs(BacSi bs)
@@ -58,7 +68,8 @@ namespace Services
 
         private ILichTuVanRepository lichTuVans;
 
-
+        private IBenhVienRepository benhViens;
+        private IAdminRepository admins;
         private EHealthCareService()
         {
             dbContext = new DbEHealthCare();
@@ -68,6 +79,14 @@ namespace Services
             this.chiTietTuVans = new ChiTietTuVanRepository(dbContext);
             this.lichTuVans = new LichTuVanRepository(dbContext);
             this.chiTietChuyenKhoas = new ChiTietChuyenKhoaRepository(dbContext);
+            this.benhViens = new BenhVienRepository(dbContext);
+            this.hoSos = new HoSoRepository(dbContext);
+            this.admins = new AdminRepository(dbContext);
+        }
+
+        public List<HoSo> getHoSos()
+        {
+            return hoSos.GetAll().ToList();
         }
 
         public void AddChiTietTuVan(ChiTietTuVan cttv)
@@ -83,6 +102,11 @@ namespace Services
             // dbContext.Entry<BenhNhan>(bn).Reload();
         }
 
+        public void Add(BenhVien b)
+        {
+            benhViens.Add(b);
+        }
+
         public BenhNhan Login(BenhNhan bn)
         {
             return benhNhans.GetBy(b => b.email == bn.email && b.matkhau == bn.matkhau);
@@ -96,6 +120,11 @@ namespace Services
         public List<ChiTietChuyenKhoa> getChiTietChuyenKhoa(BacSi bs)
         {
             return chiTietChuyenKhoas.GetAll().Where(ct => ct.email_BS.CompareTo(bs.email) == 0).ToList();
+        }
+
+        public void Delete(BenhVien bv)
+        {
+            benhViens.Delete(bv);
         }
 
         public List<ChuyenKhoa> getChuyenKhoas()
@@ -180,9 +209,34 @@ namespace Services
             return chiTietChuyenKhoas.GetAll().ToList();
         }
 
+        public void Delete(HoSo hs)
+        {
+            hoSos.Delete(hs);
+        }
+
         public void Delete(ChiTietTuVan ct)
         {
             chiTietTuVans.Delete(ct);
+        }
+
+        public void Add(BacSi bs)
+        {
+            bacSis.Add(bs);
+        }
+
+        public void Add(ChiTietChuyenKhoa ct)
+        {
+            chiTietChuyenKhoas.Add(ct);
+        }
+
+        public List<Admin> getAdmins()
+        {
+            return admins.GetAll().ToList();
+        }
+
+        public List<BenhNhan> getBenhNhans()
+        {
+            return benhNhans.GetAll().ToList();
         }
     }
 }

@@ -338,6 +338,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -358,19 +359,27 @@
     <Compile Include="Utils\PaymentRequest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Data_Process\CurrentRoom.txt" />
     <Content Include="App_Data\Data_Process\room.txt" />
+    <Content Include="App_Data\UpdateInfo\infoUpdates.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\addbs.css" />
+    <Content Include="Content\css\addbv.css" />
     <Content Include="Content\css\dangkybn.css" />
+    <Content Include="Content\css\dangkybs.css" />
     <Content Include="Content\css\detail.css" />
     <Content Include="Content\css\history.css" />
     <Content Include="Content\css\home.css" />
     <Content Include="Content\css\info_bs.css" />
+    <Content Include="Content\css\layoutadmin.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\probn.css" />
     <Content Include="Content\css\probs.css" />
+    <Content Include="Content\css\quanlycv.css" />
     <Content Include="Content\css\regis.css" />
+    <Content Include="Content\images\1home.png" />
     <Content Include="Content\images\add %282%29.png" />
     <Content Include="Content\images\avartar.png" />
     <Content Include="Content\images\avartar20220519T223042.png" />
@@ -386,6 +395,7 @@
     <Content Include="Content\images\contact.png" />
     <Content Include="Content\images\doan.jpeg" />
     <Content Include="Content\images\dung.jpeg" />
+    <Content Include="Content\images\group.png" />
     <Content Include="Content\images\gym-video.mp4" />
     <Content Include="Content\images\gyu.jpeg" />
     <Content Include="Content\images\histories.png" />
@@ -407,6 +417,7 @@
     <Content Include="Content\images\mykha.jpeg" />
     <Content Include="Content\images\nhan.jpeg" />
     <Content Include="Content\images\nhat.jpeg" />
+    <Content Include="Content\images\people.png" />
     <Content Include="Content\images\philip.jpeg" />
     <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\quyet.jpeg" />
@@ -414,6 +425,7 @@
     <Content Include="Content\images\sergi.jpeg" />
     <Content Include="Content\images\sinh.jpeg" />
     <Content Include="Content\images\smith.jpeg" />
+    <Content Include="Content\images\talking.png" />
     <Content Include="Content\images\tat.jpeg" />
     <Content Include="Content\images\ton.jpeg" />
     <Content Include="Content\images\tuvan.png" />
@@ -457,6 +469,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="log4net.config" />
+    <Content Include="App_Data\Data_CV\Lab03 - Linq20220623T083535.pdf" />
+    <Content Include="App_Data\Data_CV\Lab03 - Linq20220623T083712.pdf" />
+    <Content Include="App_Data\Data_CV\Lab03 - Linq20220623T085259.pdf" />
+    <Content Include="App_Data\Data_CV\Lab03 - Linq20220623T085348.pdf" />
+    <Content Include="App_Data\Data_CV\Lab03 - Linq20220623T090159.pdf" />
+    <Content Include="Content\Media\ab.pdf" />
     <None Include="Properties\PublishProfiles\published.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -471,6 +489,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="server.js" />
+    <Content Include="Utils\TemplateMail\MailThongBaoNhanBacSi.html" />
     <Content Include="Utils\TemplateMail\MailDangKyThanhCong.html" />
     <Content Include="Utils\TemplateMail\MailQuenMatKhau.html" />
     <Content Include="Utils\TemplateMail\MailXacNhanTaiKhoan.html" />
@@ -533,9 +552,18 @@
     <Content Include="Views\Login\NhapMailForgotPass.cshtml" />
     <Content Include="Views\Login\ThayDoiMatKhau.cshtml" />
     <Content Include="Views\Probn\Info.cshtml" />
+    <Content Include="Views\Admin\Addbs.cshtml" />
+    <Content Include="Views\Admin\Addbv.cshtml" />
+    <Content Include="Views\Admin\DangKybs.cshtml" />
+    <Content Include="Views\Admin\QuanLyBV.cshtml" />
+    <Content Include="Views\Admin\QuanLyCV.cshtml" />
+    <Content Include="Views\Shared\_Layout_admin.cshtml" />
+    <Content Include="Views\Admin\Xemcv.cshtml" />
+    <Content Include="Views\Admin\ThongKe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\attachment\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
