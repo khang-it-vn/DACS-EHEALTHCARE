@@ -1,4 +1,5 @@
-﻿using EHealthCare_WebApp.Utils;
+﻿using DbEHealthcare.Entities;
+using EHealthCare_WebApp.Utils;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -143,6 +144,8 @@ namespace EHealthCare_WebApp.Controllers
             bs.hoten = name;
             ViewData["benhvien"] = EHealthCareService.Instance.getBenhViens();
             ViewData["chuyenkhoa"] = EHealthCareService.Instance.getChuyenKhoas();
+            List<TrinhDo> trinhDos = EHealthCareService.Instance.getTrinhDos();
+            ViewData["trinhdo"] = trinhDos;
             return View(bs);
         }
         public ActionResult Xoa(string mail)

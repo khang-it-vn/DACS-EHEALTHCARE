@@ -70,6 +70,7 @@ namespace Services
 
         private IBenhVienRepository benhViens;
         private IAdminRepository admins;
+        private ITrinhDoRepository trinhdos;
         private EHealthCareService()
         {
             dbContext = new DbEHealthCare();
@@ -82,6 +83,7 @@ namespace Services
             this.benhViens = new BenhVienRepository(dbContext);
             this.hoSos = new HoSoRepository(dbContext);
             this.admins = new AdminRepository(dbContext);
+            this.trinhdos = new TrinhDoReposiroty(dbContext);
         }
 
         public List<HoSo> getHoSos()
@@ -192,6 +194,11 @@ namespace Services
         public void UpdateCTTV(ChiTietTuVan cttv)
         {
             chiTietTuVans.Edit(cttv);
+        }
+
+        public List<TrinhDo> getTrinhDos()
+        {
+            return trinhdos.GetAll().ToList();
         }
 
         public void Delete(LichTuVan ltv)
