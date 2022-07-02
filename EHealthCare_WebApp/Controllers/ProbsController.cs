@@ -271,7 +271,7 @@ namespace EHealthCare_WebApp.Controllers
         }
         private void SaveFileInfo(HttpPostedFileBase file_info, string name)
         {
-            file_info.SaveAs(Path.Combine(Server.MapPath("~/App_Data/UpdateInfo"), name));
+            file_info.SaveAs(Path.Combine(Server.MapPath("~/Content/FileUpdateInfo"), name));
         }
 
         public ActionResult Mission()
