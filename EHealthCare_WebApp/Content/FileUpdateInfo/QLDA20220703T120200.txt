@@ -1,0 +1,92 @@
+Chương 3:
+1. Sơ đồ mạng
+2. Vẽ gantt
+
+Chương 4:
+	STT, công việc, thời gian, chí phí 1 ngày, tổng cộng 
+	- Khảo sát yêu cầu: 15 ngày
+	- Phân tích và viết tài liệu: 15 ngày (200k/1 ngày)
+	- Viết tài liệu: 10 ngày (200k/1 ngày)
+	- Thiết kế CSDL: 4 ngày (200k/1 ngày)
+	- Giao diện: 5 ngày (3tr/1 ngày) - 200k/1 ngày
+	- Test - fixbug: 200k/1 ngày
+	- demo: 700k/1 ngày
+	- Triển khai: 400k/1 ngày
+	- Nghiệm thu: 15tr/1 ngày
+	- Nhân công:
+	- Trang thiết bị:
+	- Tiền dự phòng:
+	
+	+ Chi phí trả thù lao 
+	+ Chi phí trang thiết bị
+	+ Chi phí phát sinh
+	+ 
+
+Chương 5: Quản lí chất lượng của dự án
+5.1. Các tiêu chí đánh giá thành công của dự án 
+	+ Sản phẩm đầu đủ chức năng, chạy ổn định trong 3 tháng
+	+ Các nút bấm phản hồi sau 2s
+	+ Dữ liệu sẽ trả về trong vòng 3s
+	+ Dữ liệu được lưu trữ chính xác và tối ưu
+	+ Dự án không lố tiền
+	+ Hoàn thành đúng thời gian
+5.2. Các vấn đề gặp phải sau khi triển khai dự án
+
+Chương 6: Quản lí nhân sự
+6.1. Sơ đồ tổ chức của dự án
+	+ Vẽ cây (3BA, Devlead - Dev, Testlead - lead)
+6.2. Ma trận kĩ năng của các thành viên trong dự án
+6.3. Công việc của các thành viên trong dự án
+	+ Vẽ bảng gồm 3 cột: STT, tên thành viên, công việc
+	1. (BAlead) Quản lí chính - công việc: PTTKHT, PTTKHĐT, đảm bảo dự án đi đúng tiến độ
+	2. 2 ông BA: copy (1)
+	3. Devlead: phân tích thiết kế từ những ông BA, đảm bảo việc lập trình đi đúng tiến độ
+	4. 5 member dev: copy (3) trừ đảm bảo việc lập trình đi đúng tiến độ
+	5. Testlead: đảm bảo việc kiểm thử đi đúng tiến độ
+	6. Tester: 
+6.4. Thù lap của các thành viên trong dự án
+	+ Vẽ bảng 5 cột: STT, tên, vị trí, lương 1 ngày, tổng thù lao
+	1. Quản lí chính: 1tr/1 ngày
+	2. BA: 800k/1 ngày
+	3. Devlead: 700k/1 ngày
+	4. Testlead: 700k/1 ngày
+	5. Tester - Dever: 450k/1 ngày
+	=> Dự án cần bao nhiêu tiền để trả thù lao cho nhân viên
+
+Chương 7: Quản lí truyền thông
+7.1. Các nền tảng truyền thông của dự án (zalo, FB
+7.2. Xung đột và giải quyết xung đột
+	+ Vẽ 3 cột: STT, xung đột, giải pháp (giao dịch thông tin, thông tin)
+7.3. Phân phối thông tin
+	+ 10 loại kênh tuyền thông
+	1. Tuyên bố dự án: tần suất, người tham gia, tài liệu sử dụng đối tượng tiếp cận CNTT *này 6 cái lận
+	2. Lên kế hoạch: (thông báo nội dung khảo sát để khách hàng chuẩn bị)
+	1 lần khi bắt đầu dự án
+	Hình thức: gặp trực tiếp, online, gọi điện
+	Quản lí, BA, những người quản lí thông tin bên khách hàng
+	Thông tin liên quan đến yêu cầu của dự án
+	Đối tượng: Quản lí, BA, những người quản lí thông tin bên khách hàng
+	3. Họp khách hàng để lấy thông tin yêu cầu: lấy thông tin
+	tần suất: 1 ngày 1 lần hoặc khi cần thiết
+	Hình thức: trực tiếp
+	Đối tượng tham gia: BA, người quản lí thông tin
+	Tài liệu sử dụng: thiết kế giao diện, CSDL, chức năng
+	Đối tượng: người quản lí thông tin, người quản lí dự án
+	4. Họp các thành viên trong team lập trình: Báo cáo những công việc đã làm
+	Tần suất: 2 tuần  1 lần
+	Hình thức: Trực tiếp
+	Đối tượng: Quản lí, devlead, testlead
+	Tài liệu yêu cầu: kế hoạch các công việc tiếp theo và báo cáo những công việc đã qua
+	Đối tượng: Toàn bộ thành viên trong dự án
+	5. Họp test
+	6. Demo
+	Tấn suất: khi nào có demo
+	Đối tượng: quản lí, devlead, testlead
+	7. Gặp mặt khách hàng để lấy phản hồi
+	8. Triển khai phản hồi của khách hàng cho team
+	9.  Họp bàn giao sản phẩm
+	10. Nghiệm thu
+Chương 8: Quản lí rủi ro
+	+ Vẽ bảng: STT, tên rủi ro, mức độ, thời gian, xác suất, người chịu trách nhiệm, cách khác phục
+	Lộ mã nguồn: mức độ 4-6, xác suất: 2, người chịu trách nhiệm: QL
+
