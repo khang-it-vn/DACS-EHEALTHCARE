@@ -28,7 +28,13 @@ namespace EHealthCare_WebApp.Controllers
         private string emailbs = "";
         // GET: Probn
         
-
+            /// <summary>
+            /// Xem thông tin cá nhân của bệnh nhân
+            /// Tại đây người dùng có thể trực tiếp sửa các thông tin và nhấn cập nhật nếu muốn thay đổi
+            /// Đăng xuất và đăng nhập lại thì mới xuất hiện ảnh mới.
+            /// 
+            /// </summary>
+            /// <returns></returns>
         public ActionResult Profile()
         {
             bool exists_session = check_session();
@@ -250,6 +256,7 @@ namespace EHealthCare_WebApp.Controllers
             return View();
         }
 
+        // Xem lịch sử đã tư vấn
         public ActionResult History()
         {
             bool exists_session = check_session();
@@ -258,8 +265,13 @@ namespace EHealthCare_WebApp.Controllers
                 return RedirectToAction("Index", "Login");
             }
             String email = Session["email"] as String;
+            // lấy lịch tư vấn của bệnh nhân
             List<LichTuVan> lichtuvans = EHealthCareService.Instance.getLichTuVans();
+
+            // lấy chi tiết lịch tư vấn 
             List<ChiTietTuVan> chitietltv = EHealthCareService.Instance.getChiTietTuVans();
+
+            // lọc cái chi tiết lịch tư vấn theo lịch tư vấn
             List<LichTuVan> lichtuvanOfSession = lichtuvans.Where(ltv => DateTime.Compare(DateTime.Now, ltv.ntv) > 0 && String.Compare(ltv.email_BN, email) == 0).ToList();
             List<BacSi> bacsis = EHealthCareService.Instance.getBacSis();
             bacsis.ForEach(bs =>
@@ -269,6 +281,8 @@ namespace EHealthCare_WebApp.Controllers
             ViewData["bacsis"] = bacsis;
             ViewData["lichtuvans"] = lichtuvanOfSession;
 
+
+            // chuyển chi tiết lịch tư vấn về json
             List<ChiTietTuVanDAO> chitietlichtuvan = new List<ChiTietTuVanDAO>();
             foreach(LichTuVan l in lichtuvanOfSession)
             {
@@ -369,6 +383,11 @@ namespace EHealthCare_WebApp.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// hàm xem lịch đã đăng ký tư vấn
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Books()
         {
             bool exists_session = check_session();
@@ -408,6 +427,7 @@ namespace EHealthCare_WebApp.Controllers
             return View();
         }
 
+        // Hàm thực hiện chức năng xem thông tin bác sĩ
         public ActionResult Info(string email)
         {
             bool exists_session = check_session();
