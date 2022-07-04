@@ -17,3 +17,13 @@ E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\D
 E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.xml
 E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\obj\Debug\DbEHealthCare.dll
 E:\Nam 3\HK2-Nam3\Laptrinhweb\DoAn\doan_ltw\ehealthcare-dacs\DbEHealthCare\obj\Debug\DbEHealthCare.pdb
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\DbEHealthCare.dll.config
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\DbEHealthCare.dll
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\DbEHealthCare.pdb
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\obj\Debug\DbEHealthcare.csprojResolveAssemblyReference.cache
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\obj\Debug\DbEHealthCare.dll
+C:\Users\nguye\Desktop\DOANWEB\DOANWEB\DbEHealthCare\obj\Debug\DbEHealthCare.pdb

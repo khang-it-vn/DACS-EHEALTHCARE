@@ -9,6 +9,7 @@
     ck_null.ten_CK = "Trống";
     ck.Add(ck_null);
     ck = ck.OrderBy(c => c.ma_CK).ToList();
+    List<DbEHealthcare.Entities.TrinhDo> td = ViewData["trinhdo"] as List<DbEHealthcare.Entities.TrinhDo>;
 }
 <!DOCTYPE html>
 <html>
@@ -58,6 +59,25 @@
                                     <input id="id_jsoy2r" name="name" readonly type="text" value="@Model.hoten">
                                 </div>
                             </div>
+
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_jsoy2r">
+                                    <label for="id_jsoy2r">
+                                        Ngày tháng năm sinh
+                                    </label>
+                                    <input id="id_jsoy2r" name="ntns" type="date" value="@Model.ntns">
+                                </div>
+                            </div>
+
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_pj75nq">
+                                    <label for="id_pj75nq">
+                                        Trình độ chuyên môn
+                                    </label>
+                                    @Html.DropDownList("trinhdo", new SelectList(td, "mahv", "TenHVHH"), htmlAttributes: new { @mahv = "id_pj75nq" })
+                                </div>
+                            </div>
+
                             <div class="bee-form-row">
                                 <div class="bee-field bee-field-id_1jf91o">
                                     <label for="id_1jf91o">
@@ -66,14 +86,16 @@
                                     <input id="id_1jf91o" name="email" readonly type="email" value="@Model.email">
                                 </div>
                             </div>
+
                             <div class="bee-form-row">
                                 <div class="bee-field bee-field-id_pj75nq">
                                     <label for="id_pj75nq">
                                         Bệnh Viện
                                     </label>
-                                        @Html.DropDownList("benhvien", new SelectList(bv, "id", "ten_bv"), htmlAttributes: new { @id = "id_pj75nq" })
+                                    @Html.DropDownList("benhvien", new SelectList(bv, "id", "ten_bv"), htmlAttributes: new { @id = "id_pj75nq" })
                                 </div>
                             </div>
+
                             <div class="bee-form-row">
                                 <div class="bee-field bee-field-id_w6jcql">
                                     <label for="id_w6jcql">
@@ -84,6 +106,28 @@
                                     @Html.DropDownList("chuyenkhoa3", new SelectList(ck, "ma_CK", "ten_CK"))
                                 </div>
                             </div>
+
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_1jf91o">
+                                    <label for="id_1jf91o">
+                                        Kinh nghiệm
+                                    </label>
+                                    <input id="id_1jf91o" name="kinhnghiem" type="text" value="@Model.kinhnghiem">
+                                </div>
+                            </div>
+
+                            <div class="bee-form-row">
+                                <div class="bee-field bee-field-id_jsoy2r">
+                                    <label for="id_jsoy2r">
+                                        Giới tính
+                                    </label>
+                                    <input name="gender" type="radio" value="1" />Nam
+                                    <input name="gender" type="radio" value="0" />Nữ
+                                </div>
+                            </div>
+
+                            <input type="file" class="form-control" name="hinhanh">
+
                             <div class="bee-form-row">
                                 <div class="bee-field bee-field-id_moxua3">
                                     <div class="bee-button-container">

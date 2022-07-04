@@ -125,7 +125,11 @@ namespace EHealthCare_WebApp.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// tìm kiếm lịc làm việc theo ngày
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public ActionResult FilterMission(DateTime date)
         {
             bool exists_session = check_session();
@@ -171,6 +175,12 @@ namespace EHealthCare_WebApp.Controllers
             ViewData["chitiettuvans"] = json.Serialize(chitiettuvan_of_bacsi);
             return View();
         }
+
+        /// <summary>
+        /// tìm kiếm lịch sử theo một ngày nào đó
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public ActionResult FilterHistory(DateTime date)
         {
             bool exists_session = check_session();
@@ -225,6 +235,13 @@ namespace EHealthCare_WebApp.Controllers
             return name + DateTime.Now.ToString("yyyyMMddTHHmmss") + extension;
         }
 
+        /// <summary>
+        /// bác sĩ có thể 
+        /// </summary>
+        /// <param name="ntns"></param>
+        /// <param name="kinhnghiem"></param>
+        /// <param name="file_info"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Update(DateTime ntns, String kinhnghiem,HttpPostedFileBase file_info)
         {
@@ -274,6 +291,10 @@ namespace EHealthCare_WebApp.Controllers
             file_info.SaveAs(Path.Combine(Server.MapPath("~/Content/FileUpdateInfo"), name));
         }
 
+        /// <summary>
+        /// Xem lịch chuẩn bị tư vấn
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Mission()
         {
             bool exists_session = check_session();

@@ -46,6 +46,18 @@ namespace EHealthCare_WebApp.Controllers
             BenhNhan bn = EHealthCareService.Instance.getBenhNhan(b => b.email == email );
             return View(bn);
         }
+
+
+        /// <summary>
+        /// Sau khi nhấn cập nhật thì hàm update sẽ chạy
+        /// </summary>
+        /// <param name="hoten"></param>
+        /// <param name="ntns"></param>
+        /// <param name="gioitinh"></param>
+        /// <param name="dc"></param>
+        /// <param name="sdt"></param>
+        /// <param name="hinhanh"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Update(String hoten, DateTime ntns, bool gioitinh, string dc, string sdt, HttpPostedFileBase hinhanh)
         {

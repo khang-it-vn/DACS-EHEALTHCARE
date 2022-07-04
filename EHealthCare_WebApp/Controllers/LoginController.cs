@@ -23,13 +23,14 @@ namespace EHealthCare_WebApp.Controllers
         [HttpPost]
         public ActionResult CheckLogin(string mail, string password)
         {
-            string pass = MaHoaMD5(password);
-            Admin ad = EHealthCareService.Instance.getAdmins().SingleOrDefault(a => a.email.CompareTo(mail) == 0 && a.Pass.CompareTo(pass) == 0);
+            
+            Admin ad = EHealthCareService.Instance.getAdmins().SingleOrDefault(a => a.email.CompareTo(mail) == 0 && a.Pass.CompareTo(password) == 0);
             if(ad != null)
             {
                 Session["email"] = ad.email;
                 return RedirectToAction("QuanLyCV", "Admin");
             }
+            string pass = MaHoaMD5(password);
             BenhNhan bn = new BenhNhan() { email = mail, matkhau = pass};
             BenhNhan info_bn = EHealthCareService.Instance.Login(bn);
             if (info_bn != null)

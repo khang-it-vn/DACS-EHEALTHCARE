@@ -101,6 +101,7 @@
             <div id="element-detail" class="element-2 " style="background-color: none">
                 <div style="margin-top: 65px;" >
                     @{
+                        // chức năng join vào phòng tư vấn // fontend 
                         string uri = "http://localhost:3000/index.html?meeting_id=" + @ltv.phongtuvan + "&user_name=" + Html.Raw(ltv.BenhNhan.hoten) + "&user_id=" + ltv.email_BN;
                         }
                     <a href="@uri" target="_blank" style="text-decoration: none">Vào phòng</a>

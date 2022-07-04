@@ -10,7 +10,7 @@
 
 		.bee-row-1 .bee-row-content,
 		.bee-row-2 .bee-row-content {
-			background-color: #fffff;
+			background-color: #fff;
 			background-repeat: no-repeat;
 			color: #000
 		}
@@ -44,13 +44,13 @@
 		}
 
 		.bee-row-content {
-			max-width: 1280px;
+			max-width: 1380px;
 			margin: 0 auto;
 			display: flex
 		}
 
 		.bee-row-content .bee-col-w2 {
-			flex-basis: 17%
+			flex-basis: 25%
 		}
 
 		.bee-row-content .bee-col-w10 {
@@ -126,3 +126,6 @@
 			margin-left: 0;
 			margin-right: 0
 		}
+        .bee-button{
+            width: 300px;
+        }

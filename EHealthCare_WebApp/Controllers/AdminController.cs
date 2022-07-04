@@ -1,4 +1,6 @@
-﻿using EHealthCare_WebApp.Utils;
+﻿using DbEHealthcare.Entities;
+using EHealthCare_WebApp.Models;
+using EHealthCare_WebApp.Utils;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,7 @@ namespace EHealthCare_WebApp.Controllers
         public ActionResult DangKybs(string name, string email, HttpPostedFileBase file)
         {
             DbEHealthcare.Entities.BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email == email);
-            if(bs!=null)
+            if (bs != null)
             {
                 return View();
             }
@@ -35,7 +37,7 @@ namespace EHealthCare_WebApp.Controllers
             hs.ten_ung_vien = name;
             EHealthCareService.Instance.Add(hs);
             EHealthCareService.Instance.Save();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -44,7 +46,8 @@ namespace EHealthCare_WebApp.Controllers
             try
             {
                 file.SaveAs(Path.Combine(Server.MapPath("~/Content/Media"), newNameFile));
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
 
             }
@@ -57,7 +60,7 @@ namespace EHealthCare_WebApp.Controllers
             return name + DateTime.Now.ToString("yyyyMMddTHHmmss") + extension;
         }
 
-        public ActionResult QuanLyCV ()
+        public ActionResult QuanLyCV()
         {
             List<DbEHealthcare.Entities.HoSo> hoSos = EHealthCareService.Instance.getHoSos();
 
@@ -143,6 +146,8 @@ namespace EHealthCare_WebApp.Controllers
             bs.hoten = name;
             ViewData["benhvien"] = EHealthCareService.Instance.getBenhViens();
             ViewData["chuyenkhoa"] = EHealthCareService.Instance.getChuyenKhoas();
+            List<TrinhDo> trinhDos = EHealthCareService.Instance.getTrinhDos();
+            ViewData["trinhdo"] = trinhDos;
             return View(bs);
         }
         public ActionResult Xoa(string mail)
@@ -167,7 +172,7 @@ namespace EHealthCare_WebApp.Controllers
             ct.ma_CK = chuyenkhoa1;
             EHealthCareService.Instance.Add(ct);
             EHealthCareService.Instance.Save();
-            if(chuyenkhoa2!=-1)
+            if (chuyenkhoa2 != -1)
             {
                 DbEHealthcare.Entities.ChiTietChuyenKhoa ct2 = new DbEHealthcare.Entities.ChiTietChuyenKhoa();
                 ct2.email_BS = email;
@@ -197,7 +202,7 @@ namespace EHealthCare_WebApp.Controllers
         public ActionResult Xemcv(string tencv)
         {
             ViewBag.tencv = tencv;
-                return View();
+            return View();
         }
 
         public ActionResult ThongKe()
@@ -216,6 +221,198 @@ namespace EHealthCare_WebApp.Controllers
 
             return View();
 
+        }
+
+        // Quản lý info
+        public ActionResult QuanLyInfo()
+        {
+            List<BacSiNew> ls = new List<BacSiNew>();
+            try
+            {
+                var path = Server.MapPath(@"~/App_Data/UpdateInfo/infoUpdates.txt");
+                using (StreamReader sr = new StreamReader(path, true))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        BacSiNew cl = new BacSiNew();
+                        cl.email = line;
+                        line = sr.ReadLine();
+                        cl.time = DateTime.Parse(line);
+                        line = sr.ReadLine();
+                        cl.name_file = line;
+                        ls.Add(cl);
+                    }
+                }
+                ViewData["BacSi"] = ls;
+
+                List<BacSi> oldBacSi = new List<BacSi>();
+                ls.ForEach(l =>
+                {
+                    BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email.CompareTo(l.email) == 0);
+                    oldBacSi.Add(bs);
+                });
+                ViewData["OldBacSis"] = oldBacSi;
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return View();
+        }
+
+        // Xóa file cập nhật thông tin
+        public ActionResult XoaFileInfo(string email, string date, string namefile)
+        {
+
+            List<BacSiNew> ls = new List<BacSiNew>();
+            try
+            {
+                var path = Server.MapPath(@"~/App_Data/UpdateInfo/infoUpdates.txt");
+                using (StreamReader sr = new StreamReader(path, true))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        BacSiNew cl = new BacSiNew();
+                        cl.email = line;
+                        line = sr.ReadLine();
+                        cl.time = DateTime.Parse(line);
+                        line = sr.ReadLine();
+                        cl.name_file = line;
+                        ls.Add(cl);
+                    }
+                }
+                BacSiNew bs_delete = ls.First(b => b.email.CompareTo(email) == 0 && b.name_file.CompareTo(namefile) == 0);
+                ls.Remove(bs_delete);
+
+                using (StreamWriter writer = new StreamWriter(path, false))
+                {
+                    ls.ForEach(l =>
+                    {
+                        writer.WriteLine(l.email);
+                        writer.WriteLine(l.time);
+                        writer.WriteLine(l.name_file);
+                    });
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return RedirectToAction("QuanLyInfo");
+        }
+
+        /// <summary>
+        /// Xem và cập nhật thông tin cho bác sĩ
+        /// </summary>
+        /// <param name="nameFile"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public ActionResult DetailUpdate(string nameFile, string email)
+        {
+            List<BacSiNew> ls = new List<BacSiNew>();
+            try
+            {
+                var path = Server.MapPath(@"~/App_Data/UpdateInfo/infoUpdates.txt");
+                using (StreamReader sr = new StreamReader(path, true))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        BacSiNew cl = new BacSiNew();
+                        cl.email = line;
+                        line = sr.ReadLine();
+                        cl.time = DateTime.Parse(line);
+                        line = sr.ReadLine();
+                        cl.name_file = line;
+                        ls.Add(cl);
+                    }
+                }
+                BacSi bs = EHealthCareService.Instance.getBacSiBy(b => b.email.CompareTo(email) == 0);
+                ViewData["bacsi"] = bs;
+                ViewData["namefile"] = nameFile;
+
+                List<BenhVien> benhviens = EHealthCareService.Instance.getBenhViens();
+                ViewData["benhviens"] = benhviens;
+
+                List<TrinhDo> trinhdos = EHealthCareService.Instance.getTrinhDos();
+                ViewData["trinhdos"] = trinhdos;
+                List<ChiTietChuyenKhoa> list_ck_of_bs = EHealthCareService.Instance.getChiTietChuyenKhoa().Where(l => l.email_BS.CompareTo(bs.email) == 0).ToList();
+                ViewData["ckofbs"] = list_ck_of_bs;
+
+                List<ChuyenKhoa> chuyenkhoas = EHealthCareService.Instance.getChuyenKhoas();
+                ViewData["chuyenkhoas"] = chuyenkhoas;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult DetailUpdate(string email, string hoten, string benhvien,string gioitinh,HttpPostedFileBase hinh,string trinhdo,string chuyenkhoa1, string chuyenkhoa2,string chuyenkhoa3)
+        {
+            BacSi bacsi = EHealthCareService.Instance.getBacSiBy(b => b.email.CompareTo(email) == 0);
+
+            EHealthCareService.Instance.Delete(bacsi, true);
+
+            bacsi.hoten = hoten;
+            bacsi.id_bv = benhvien;
+            bacsi.gioitinh = gioitinh == "1" ? true : false;
+            bacsi.mahv = trinhdo;
+
+            List<ChiTietChuyenKhoa> ct = new List<ChiTietChuyenKhoa>();
+            ChiTietChuyenKhoa ct_ck = new ChiTietChuyenKhoa() ;
+            ct_ck.email_BS = bacsi.email;
+            ct_ck.ma_CK = int.Parse(chuyenkhoa1);
+            ct.Add(ct_ck);
+            if(chuyenkhoa2 != "-1")
+            {
+                ChiTietChuyenKhoa ct_ck2 = new ChiTietChuyenKhoa();
+                ct_ck2.email_BS = bacsi.email;
+                ct_ck2.ma_CK = int.Parse(chuyenkhoa2);
+                ct.Add(ct_ck2);
+            }
+            if (chuyenkhoa3 != "-1")
+            {
+                ChiTietChuyenKhoa ct_ck3 = new ChiTietChuyenKhoa();
+                ct_ck3.email_BS = bacsi.email;
+                ct_ck3.ma_CK = int.Parse(chuyenkhoa3);
+                ct.Add(ct_ck3);
+            }
+            if(hinh != null)
+            {
+                String newNameImg = SetNameImg(hinh);
+                SaveImg(hinh, newNameImg);
+                bacsi.hinhanh = newNameImg;
+            }
+            EHealthCareService.Instance.UpdateBS(bacsi);
+            EHealthCareService.Instance.Save();
+
+            EHealthCareService.Instance.Add(ct);
+            EHealthCareService.Instance.Save();
+            return RedirectToAction("QuanLyInfo");
+        }
+        private void SaveImg(HttpPostedFileBase hinhanh, string newNameImg)
+        {
+            hinhanh.SaveAs(Path.Combine(Server.MapPath("~/Content/images"), newNameImg));
+        }
+
+        private string SetNameImg(HttpPostedFileBase hinhanh)
+        {
+            String name = Path.GetFileNameWithoutExtension(hinhanh.FileName);
+            String extension = Path.GetExtension(hinhanh.FileName);
+            return name + DateTime.Now.ToString("yyyyMMddTHHmmss") + extension;
         }
     }
 }

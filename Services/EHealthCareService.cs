@@ -70,6 +70,8 @@ namespace Services
 
         private IBenhVienRepository benhViens;
         private IAdminRepository admins;
+
+        private ITrinhDoRepository trinhDos;
         private EHealthCareService()
         {
             dbContext = new DbEHealthCare();
@@ -82,6 +84,7 @@ namespace Services
             this.benhViens = new BenhVienRepository(dbContext);
             this.hoSos = new HoSoRepository(dbContext);
             this.admins = new AdminRepository(dbContext);
+            this.trinhDos = new TrinhDoReposiroty(dbContext);
         }
 
         public List<HoSo> getHoSos()
@@ -198,6 +201,12 @@ namespace Services
         {
             lichTuVans.Delete(ltv);
         }
+
+        public List<TrinhDo> getTrinhDos()
+        {
+            return trinhDos.GetAll().ToList();
+        }
+
         public bool MailExists(BenhNhan bn)
         {
             return benhNhans.FindBy(b => b.email.CompareTo(bn.email.ToLower()) == 0);
@@ -237,6 +246,25 @@ namespace Services
         public List<BenhNhan> getBenhNhans()
         {
             return benhNhans.GetAll().ToList();
+        }
+
+        public void Delete(BacSi bacsi, bool v)
+        {
+            List<ChiTietChuyenKhoa> ct = EHealthCareService.instance.getChiTietChuyenKhoa().Where(c => c.email_BS.CompareTo(bacsi.email) == 0).ToList();
+            ct.ForEach(c =>
+            {
+                chiTietChuyenKhoas.Delete(c);
+            });
+            Save();
+        }
+
+        public void Add(List<ChiTietChuyenKhoa> ct)
+        {
+            ct.ForEach(c =>
+            {
+                chiTietChuyenKhoas.Add(c);
+            });
+            Save();
         }
     }
 }
